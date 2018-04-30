@@ -82,8 +82,8 @@ class RSHotKeywordTableViewController: UIViewController, UITableViewDelegate, UI
         
         //        var cell = UITableViewCell();
         cell.textLabel?.text = self.keywords[indexPath.row].name;
-        print("print keyword cell. keyword[\(cell.textLabel?.text)]");
-        var pointSize = CGFloat(17.0);
+        print("print keyword cell. keyword[\(cell.textLabel?.text ?? "")]");
+        let pointSize = CGFloat(17.0);
         cell.textLabel?.font = cell.textLabel?.font.withSize(pointSize);
         cell.textLabel?.textColor = UIColor.blue;
         cell.textLabel?.highlightedTextColor = UIColor.gray;
@@ -94,7 +94,7 @@ class RSHotKeywordTableViewController: UIViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var keyword = self.keywords[indexPath.row].name ?? "";
+        let keyword = self.keywords[indexPath.row].name ?? "";
         self.delegate?.hotKeywordTable(controller: self, didSelectKeyword: keyword);
     }
     

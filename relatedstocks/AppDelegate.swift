@@ -12,6 +12,7 @@ import GoogleMobileAds
 import RestEssentials
 import Firebase
 import LSExtensions
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UNUserNotificationCenterDelegate {
@@ -103,21 +104,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        var device = deviceToken.hexString;
+        let device = deviceToken.hexString;
             //.reduce("", {$0 + String(format: "%02X", $1)});
-        print("APNs device[\(device)]");
-        let restUrl = "http://222.122.212.176:3004/devices/insert";
-        guard let rest = RestController.make(urlString: restUrl) else{
-            return;
-        }
+        print("APNs device[\(device)] => \(RSStockController.PushRegURL.absoluteString)");
         
-        rest.post(["type":"ios","device":device]) { (result, res) in
-            do{
-                let data = try result.value();
-                print("push reg. result[\(result)]");
-            }catch let error{
-                print("push reg error[\(error)]");
-            }
+        let params = ["type":"ios","device":device];
+        Alamofire.request(RSStockController.PushRegURL, method: .post, parameters: params, encoding: JSONEncoding.default)
+            .responseJSON { (res) in
+                guard res.error == nil else{
+                    print("push reg. error[\(res.error.debugDescription)]");
+                    return;
+                }
+                
+                print("push reg. result[\(res.response?.description ?? "")]");
         }
     }
     
@@ -130,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
     }
     
     func performPushCommand(_ title : String, body : String, category : String, item : String){
-        var category = RSPushData.Category(rawValue: category);
+        let category = RSPushData.Category(rawValue: category);
         
         switch category{
         case .company?:
@@ -160,8 +159,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
         var queryItem = urlComponents?.queryItems?.first(where: { (query) -> Bool in
             return query.name == "item";
         })
-        var category = queryCategory?.value ?? "";
-        var item = queryItem?.value ?? "";
+        let category = queryCategory?.value ?? "";
+        let item = queryItem?.value ?? "";
         
         guard !item.isEmpty else{
             return;

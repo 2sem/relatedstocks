@@ -31,20 +31,35 @@ import Alamofire
 class RSStockController: NSObject {
 //    typealias ListCompletionHandler = ([RSStockItem]?, NSError?) -> Void;
     static let plistName = "relatedstocks";
-    static var serverUrl : URL! = {
-        guard let plist = Bundle.main.path(forResource: plistName, ofType: "plist") else{
-            preconditionFailure("Please create plist file named of \(UIApplication.shared.displayName ?? ""). file[\(plistName).plist]");
+    
+    static func property(_ name: String) -> String{
+        guard let plist = Bundle.main.path(forResource: self.plistName, ofType: "plist") else{
+            preconditionFailure("Please create plist file named of \(UIApplication.shared.displayName ?? ""). file[\(self.plistName).plist]");
         }
         
         guard let dict = NSDictionary.init(contentsOfFile: plist) as? [String : String] else{
-            preconditionFailure("Please \(plistName).plist is not Property List.");
+            preconditionFailure("Please \(self.plistName).plist is not Property List.");
         }
         
-        return URL(string: dict["ServerURL"] ?? "");
+        return dict[name] ?? "";
+    }
+    
+    static var stocksPort : Int = {
+        return Int(property("StocksPort")) ?? 0;
+    }()
+    static var stocksUrl : URL! = {
+        return URL(string: "\(property("ServerURL")):\(stocksPort)");
+    }()
+    static var pushPort : Int = {
+        return Int(property("PushPort")) ?? 0;
+    }()
+    static var PushUrl : URL! = {
+        return URL(string: "\(property("ServerURL")):\(pushPort)");
     }()
     
-    static let StockListURL = RSStockController.serverUrl.appendingPathComponent("stock/select");
-    static let HotKeyListURL = RSStockController.serverUrl.appendingPathComponent("stock/hotkeys");
+    static let StockListURL = RSStockController.stocksUrl.appendingPathComponent("stock/select");
+    static let HotKeyListURL = RSStockController.stocksUrl.appendingPathComponent("stock/hotkeys");
+    static let PushRegURL = RSStockController.PushUrl.appendingPathComponent("devices/insert");
     
     static let MaxListCount = 10;
 

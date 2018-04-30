@@ -17,22 +17,19 @@ extension NSFetchedResultsController: ReactiveCompatible{
     }*/
 }
 
-/*struct RxNSFetchedResultsController: Reactive<NSFetchedResultsController<ResultType>>{
-    var controller: NSFetchedResultsController<NSFetchRequestResult>;
-    
-    init(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.controller = controller;
-    }
-}*/
-
-//extension RxNSFetchedResultsController{
 extension Reactive where Base: NSFetchedResultsController<NSFetchRequestResult>{
-    // where Sequence: Sequence
     func asRelay<Entity>(_ entityType: Entity.Type) -> BehaviorRelay<[Entity]> where Entity: NSFetchRequestResult{
         let sequence = RxNSFetchedResultsSequence.init(self as! Reactive<NSFetchedResultsController<Entity>>, entityType: Entity.self);
         let array : [Entity] = [Entity].init(sequence);
         //RxNSFetchedResultsSequence.init(self, entityType: Entity.self)
         return BehaviorRelay<[Entity]>.init(value: array);
+    }
+    
+    func asSubject<Entity>(_ entityType: Entity.Type) -> BehaviorSubject<[Entity]> where Entity: NSFetchRequestResult{
+        let sequence = RxNSFetchedResultsSequence.init(self as! Reactive<NSFetchedResultsController<Entity>>, entityType: Entity.self);
+        let array : [Entity] = [Entity].init(sequence);
+        //RxNSFetchedResultsSequence.init(self, entityType: Entity.self)
+        return BehaviorSubject<[Entity]>.init(value: array);
     }
 }
 
