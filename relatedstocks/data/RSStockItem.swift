@@ -9,7 +9,7 @@
 import UIKit
 
 class RSStockItem: NSObject {
-    var name : String?;
+    let name : String;
     
     init(_ name : String) {
         self.name = name;

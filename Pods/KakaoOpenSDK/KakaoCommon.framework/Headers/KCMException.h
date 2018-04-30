@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Kakao Corp.
+ * Copyright 2017-2018 Kakao Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,10 +20,11 @@
 
 @property (readonly) NSString *domain;
 @property (readonly) NSInteger code;
-@property (readonly) NSMutableDictionary *userInfoForError;
 
 + (NSException *)exceptionWithDomain:(NSString *)domain code:(NSInteger)code reason:(NSString *)reason;
 + (NSException *)exceptionWithDomain:(NSString *)domain code:(NSInteger)code reason:(NSString *)reason userInfo:(NSDictionary *)userInfo;
 - (instancetype)initWithDomain:(NSString *)domain code:(NSInteger)code reason:(NSString *)reason userInfo:(NSDictionary *)userInfo NS_DESIGNATED_INITIALIZER;
+
++ (BOOL)tryCatchWithErrorRef:(NSError **)errorRef tryBlock:(void (^)(NSMutableDictionary *moreErrorInfo))tryBlock;
 
 @end

@@ -12,6 +12,10 @@ target 'relatedstocks' do
   pod 'KakaoOpenSDK'
   pod 'RestEssentials'
   pod 'ProgressWebViewController'
+  pod 'LSExtensions', :path => '~/Projects/leesam/pods/LSExtensions/src/LSExtensions'
+  pod 'RxSwift', '~> 4.0'
+  pod 'RxCocoa', '~> 4.0'
+  pod 'Alamofire'
 
   target 'relatedstocksTests' do
     inherit! :search_paths

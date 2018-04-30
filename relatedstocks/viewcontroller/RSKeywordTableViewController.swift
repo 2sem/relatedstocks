@@ -15,7 +15,6 @@ protocol RSKeywordTableViewDelegate {
 class RSKeywordTableViewController: UITableViewController {
     static let RSKeywordCell = "RSSearchCell";
 
-//    var keyword = "";
     var keywords : [RSStoredKeyword] = [];
     
     var delegate : RSKeywordTableViewDelegate?;
@@ -28,34 +27,13 @@ class RSKeywordTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        self.refreshControl?.addTarget(self, action: #selector(updateKeywords(refreshControl:)), for: .valueChanged);
-//        self.view.backgroundColor = UIColor.red;
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: RSKeywordTableViewController.RSKeywordCell);
     }
     
     func updateKeywords(keyword: String){
-//        refreshControl.isRefreshing = true;
+        // MARK: Finds keyword contains given keyword
         self.keywords = RSModelController.Default.findKeywords(withName: keyword);
         self.tableView.reloadData();
-        
-        return;
-        RSStockController.Default.requestKeywords { (keywords, error) in
-            guard error == nil else{
-                return;
-            }
-            
-//            self.keywords = keywords!;
-            DispatchQueue.main.async {
-                self.tableView.reloadData();
-//                refreshControl.endRefreshing();
-            }
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,12 +41,10 @@ class RSKeywordTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func onDeleteKeyword(button : UIButton){
+    @objc func onDeleteKeyword(button : UIButton){
         let cell = button.superview as! UITableViewCell;
-        //        print("check fav cell -> \(cell)");
-        var value = !button.isSelected;
         
-        var keyword = self.keywords.filter { (k) -> Bool in
+        let keyword = self.keywords.filter { (k) -> Bool in
             return k.name == cell.textLabel?.text;
         }.first;
         
@@ -76,18 +52,19 @@ class RSKeywordTableViewController: UITableViewController {
             return;
         }
         
+        // MARK: Removes stored keyword if toggle off it
         self.modelController.removeKeyword(keyword: keyword!);
-        var indexPath = self.tableView.indexPath(for: cell);
-        if indexPath != nil{
-            var index = self.keywords.index(of: keyword!);
-            self.keywords.remove(at: index!);
-
-            self.tableView.deleteRows(at: [indexPath!], with: .automatic);
+        guard let indexPath = self.tableView.indexPath(for: cell) else{
+            return;
         }
         
-        self.modelController.saveChanges();
-        //        var stock : RSStoredStock?;
+        guard let index = self.keywords.index(of: keyword!) else{
+            return;
+        }
+        self.keywords.remove(at: index);
         
+        self.tableView.deleteRows(at: [indexPath], with: .automatic);
+        self.modelController.saveChanges();
     }
 
     // MARK: - Table view data source
@@ -102,27 +79,22 @@ class RSKeywordTableViewController: UITableViewController {
         return self.keywords.count;
     }
 
+    static let cellTextSize = CGFloat(20.0);
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell : UITableViewCell!;
 
         cell = tableView.dequeueReusableCell(withIdentifier: RSKeywordTableViewController.RSKeywordCell, for: indexPath);
         
-        //        var cell = UITableViewCell();
         cell.textLabel?.text = self.keywords[indexPath.row].name;
-        print("print keyword cell. keyword[\(cell.textLabel?.text)]");
-        var pointSize = CGFloat(20.0);
-        cell.textLabel?.font = cell.textLabel?.font.withSize(pointSize);
+        print("print keyword cell. keyword[\(cell.textLabel?.text ?? "")]");
+        cell.textLabel?.font = cell.textLabel?.font.withSize(type(of: self).cellTextSize);
         
         var clearButton : UIButton?;
         if cell.accessoryView == nil{
             clearButton = UIButton(frame: CGRect.init(origin: CGPoint.zero, size: CGSize(width: 40, height: 40)));
             clearButton?.setTitle("X", for: .normal);
-    //        clearButton.titleLabel?.textColor = UIColor.black;
-    //        clearButton.setTitleColor(UIColor.black, for: .normal);
             clearButton?.backgroundColor = UIColor.lightGray;
             clearButton?.layer.cornerRadius = 10;
-    //        pointSize = CGFloat(10.0);
-    //        clearButton.titleLabel?.font = cell.textLabel?.font.withSize(pointSize);
             
             cell.accessoryView = clearButton;
             
@@ -136,7 +108,7 @@ class RSKeywordTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var keyword = self.keywords[indexPath.row].name ?? "";
+        let keyword = self.keywords[indexPath.row].name ?? "";
         self.delegate?.keywordTable(controller: self, didSelectKeyword: keyword);
     }
 

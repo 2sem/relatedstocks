@@ -9,14 +9,11 @@
 /* Begin PBXBuildFile section */
 		16680EC1E23616326B6F910F /* Pods_relatedstocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE13D26F2EF69A79E6B43F2F /* Pods_relatedstocks.framework */; };
 		2C020AE51E04E493002B009E /* RSStockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C020AE41E04E493002B009E /* RSStockItem.swift */; };
-		2C020AE71E04E6E8002B009E /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C020AE61E04E6E8002B009E /* UIViewController+.swift */; };
-		2C020AE91E04E891002B009E /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C020AE81E04E891002B009E /* String+.swift */; };
 		2C020AEC1E05010F002B009E /* RSStockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C020AEB1E05010F002B009E /* RSStockController.swift */; };
 		2C02CCFE1E11FA3E00DBA3CA /* RSFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02CCFD1E11FA3E00DBA3CA /* RSFavoritesViewController.swift */; };
 		2C0AC5FE1E129F8400F344A8 /* zoom.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0AC5FD1E129F8400F344A8 /* zoom.png */; };
 		2C0AC6001E12A0F700F344A8 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0AC5FF1E12A0F700F344A8 /* list.png */; };
 		2C0AC6021E12A11200F344A8 /* story.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C0AC6011E12A11200F344A8 /* story.png */; };
-		2C0AC6041E12A75F00F344A8 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0AC6031E12A75F00F344A8 /* UIImage+.swift */; };
 		2C0AFD991E0418C40031A735 /* RSSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0AFD981E0418C40031A735 /* RSSearchTableViewController.swift */; };
 		2C0BA87C1E0E0E1D009E2414 /* RSStockKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BA87B1E0E0E1D009E2414 /* RSStockKeyword.swift */; };
 		2C0BA87F1E0E4111009E2414 /* RSKeywordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BA87E1E0E4111009E2414 /* RSKeywordTableViewController.swift */; };
@@ -26,8 +23,6 @@
 		2C0C82C01E10EE9800CB4A5C /* RSModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C82BE1E10EE9800CB4A5C /* RSModel.xcdatamodeld */; };
 		2C0C82C41E10F1D200CB4A5C /* RSModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C82C31E10F1D200CB4A5C /* RSModelController.swift */; };
 		2C0F6AC21E03885B00F3A78A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F6AC11E03885B00F3A78A /* AppDelegate.swift */; };
-		2C0F6AC41E03885B00F3A78A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F6AC31E03885B00F3A78A /* FirstViewController.swift */; };
-		2C0F6AC61E03885B00F3A78A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F6AC51E03885B00F3A78A /* SecondViewController.swift */; };
 		2C0F6AC91E03885B00F3A78A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F6AC71E03885B00F3A78A /* Main.storyboard */; };
 		2C0F6ACB1E03885B00F3A78A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F6ACA1E03885B00F3A78A /* Assets.xcassets */; };
 		2C0F6ACE1E03885B00F3A78A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F6ACC1E03885B00F3A78A /* LaunchScreen.storyboard */; };
@@ -36,17 +31,20 @@
 		2C0F6AF41E03A82100F3A78A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F6AF31E03A82100F3A78A /* MainViewController.swift */; };
 		2C0F6AF61E03B01700F3A78A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F6AF51E03B01600F3A78A /* GoogleService-Info.plist */; };
 		2C0F6AFA1E03DA0900F3A78A /* GADBannerView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F6AF81E03DA0900F3A78A /* GADBannerView+.swift */; };
-		2C0F6AFB1E03DA0900F3A78A /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F6AF91E03DA0900F3A78A /* UIView+.swift */; };
 		2C0F6AFD1E03E21000F3A78A /* RSTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F6AFC1E03E21000F3A78A /* RSTabbarController.swift */; };
 		2C0F85541F5010D600CEA691 /* GADRewardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F85531F5010D600CEA691 /* GADRewardManager.swift */; };
+		2C1262772096F26F00937611 /* relatedstocks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1262762096F26F00937611 /* relatedstocks.plist */; };
 		2C128982208742DA00F9C41F /* notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C128981208742DA00F9C41F /* notification.png */; };
+		2C13B8CF20946D530089B653 /* NSFetchedResultsController+Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2042142093614A00132E57 /* NSFetchedResultsController+Observable.swift */; };
+		2C13B8D220946DE70089B653 /* ObservableType+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13B8D120946DE70089B653 /* ObservableType+UITableView.swift */; };
 		2C1932711E9E46C70056262C /* GADInterstitial+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1932701E9E46C70056262C /* GADInterstitial+.swift */; };
 		2C1932731E9E472F0056262C /* GADInterstialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1932721E9E472F0056262C /* GADInterstialManager.swift */; };
 		2C1A87FD2026BF4E00051A1F /* RSPushData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A87FC2026BF4E00051A1F /* RSPushData.swift */; };
 		2C1B7B232026ECA400F121E0 /* Y2K.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 2C1B7B222026ECA400F121E0 /* Y2K.PNG */; };
 		2C1D44A11F4EFE3900617FA6 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D44A01F4EFE3900617FA6 /* ReviewManager.swift */; };
 		2C1D44A31F4F00DF00617FA6 /* UIApplication+KakaoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D44A21F4F00DF00617FA6 /* UIApplication+KakaoLink.swift */; };
-		2C51FE491E24CBAD00D90F8F /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51FE481E24CBAD00D90F8F /* UIApplication+.swift */; };
+		2C20420E20932D2E00132E57 /* NSFetchedResultsController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20420D20932D2E00132E57 /* NSFetchedResultsController+UITableView.swift */; };
+		2C204210209332AE00132E57 /* LSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20420F209332AE00132E57 /* LSFetchedResultsController.swift */; };
 		2C51FE4C1E24CEDD00D90F8F /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C51FE4B1E24CEDD00D90F8F /* refresh.png */; };
 		2C51FE4E1E24CF0500D90F8F /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C51FE4D1E24CF0500D90F8F /* back.png */; };
 		2C51FE501E24CF3200D90F8F /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C51FE4F1E24CF3200D90F8F /* forward.png */; };
@@ -57,7 +55,6 @@
 		2C51FE5A1E24D41400D90F8F /* icons8.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C51FE591E24D41300D90F8F /* icons8.png */; };
 		2C63B6B71FDA721D00624D7D /* RSInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C63B6B61FDA721D00624D7D /* RSInternetViewController.swift */; };
 		2CB75D221E134C7E00EBE76D /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB75D211E134C7E00EBE76D /* search.png */; };
-		2CE12C241FD189EF006A965A /* DispatchQueue+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE12C231FD189EE006A965A /* DispatchQueue+.swift */; };
 		2CEDD90D1E52E18D00F040B0 /* RSModelController+RSStoredStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEDD90C1E52E18D00F040B0 /* RSModelController+RSStoredStock.swift */; };
 		2CEDD90F1E52E1FF00F040B0 /* RSModelController+RSStoredKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEDD90E1E52E1FF00F040B0 /* RSModelController+RSStoredKeyword.swift */; };
 		2CEDD9111E52E5EF00F040B0 /* RSHotKeywordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEDD9101E52E5EF00F040B0 /* RSHotKeywordTableViewController.swift */; };
@@ -93,14 +90,11 @@
 /* Begin PBXFileReference section */
 		1D387384028DC90D9A5B8E57 /* Pods-relatedstocks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-relatedstocks.release.xcconfig"; path = "Pods/Target Support Files/Pods-relatedstocks/Pods-relatedstocks.release.xcconfig"; sourceTree = "<group>"; };
 		2C020AE41E04E493002B009E /* RSStockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSStockItem.swift; sourceTree = "<group>"; };
-		2C020AE61E04E6E8002B009E /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
-		2C020AE81E04E891002B009E /* String+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		2C020AEB1E05010F002B009E /* RSStockController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSStockController.swift; sourceTree = "<group>"; };
 		2C02CCFD1E11FA3E00DBA3CA /* RSFavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSFavoritesViewController.swift; sourceTree = "<group>"; };
 		2C0AC5FD1E129F8400F344A8 /* zoom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoom.png; sourceTree = "<group>"; };
 		2C0AC5FF1E12A0F700F344A8 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		2C0AC6011E12A11200F344A8 /* story.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = story.png; sourceTree = "<group>"; };
-		2C0AC6031E12A75F00F344A8 /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		2C0AFD981E0418C40031A735 /* RSSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSearchTableViewController.swift; sourceTree = "<group>"; };
 		2C0BA87B1E0E0E1D009E2414 /* RSStockKeyword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSStockKeyword.swift; sourceTree = "<group>"; };
 		2C0BA87E1E0E4111009E2414 /* RSKeywordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSKeywordTableViewController.swift; sourceTree = "<group>"; };
@@ -112,8 +106,6 @@
 		2C0C82C31E10F1D200CB4A5C /* RSModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSModelController.swift; sourceTree = "<group>"; };
 		2C0F6ABE1E03885B00F3A78A /* relatedstocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = relatedstocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0F6AC11E03885B00F3A78A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2C0F6AC31E03885B00F3A78A /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		2C0F6AC51E03885B00F3A78A /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		2C0F6AC81E03885B00F3A78A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C0F6ACA1E03885B00F3A78A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C0F6ACD1E03885B00F3A78A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -127,16 +119,20 @@
 		2C0F6AF31E03A82100F3A78A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2C0F6AF51E03B01600F3A78A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2C0F6AF81E03DA0900F3A78A /* GADBannerView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GADBannerView+.swift"; sourceTree = "<group>"; };
-		2C0F6AF91E03DA0900F3A78A /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		2C0F6AFC1E03E21000F3A78A /* RSTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSTabbarController.swift; sourceTree = "<group>"; };
 		2C0F85531F5010D600CEA691 /* GADRewardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADRewardManager.swift; sourceTree = "<group>"; };
+		2C1262762096F26F00937611 /* relatedstocks.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = relatedstocks.plist; sourceTree = "<group>"; };
 		2C128981208742DA00F9C41F /* notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification.png; sourceTree = "<group>"; };
+		2C13B8D120946DE70089B653 /* ObservableType+UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+UITableView.swift"; sourceTree = "<group>"; };
 		2C1932701E9E46C70056262C /* GADInterstitial+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GADInterstitial+.swift"; sourceTree = "<group>"; };
 		2C1932721E9E472F0056262C /* GADInterstialManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADInterstialManager.swift; sourceTree = "<group>"; };
 		2C1A87FC2026BF4E00051A1F /* RSPushData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSPushData.swift; sourceTree = "<group>"; };
 		2C1B7B222026ECA400F121E0 /* Y2K.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Y2K.PNG; sourceTree = "<group>"; };
 		2C1D44A01F4EFE3900617FA6 /* ReviewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 		2C1D44A21F4F00DF00617FA6 /* UIApplication+KakaoLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+KakaoLink.swift"; sourceTree = "<group>"; };
+		2C20420D20932D2E00132E57 /* NSFetchedResultsController+UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+UITableView.swift"; sourceTree = "<group>"; };
+		2C20420F209332AE00132E57 /* LSFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSFetchedResultsController.swift; sourceTree = "<group>"; };
+		2C2042142093614A00132E57 /* NSFetchedResultsController+Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Observable.swift"; sourceTree = "<group>"; };
 		2C51FE481E24CBAD00D90F8F /* UIApplication+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		2C51FE4B1E24CEDD00D90F8F /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		2C51FE4D1E24CF0500D90F8F /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -148,7 +144,6 @@
 		2C51FE591E24D41300D90F8F /* icons8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icons8.png; sourceTree = "<group>"; };
 		2C63B6B61FDA721D00624D7D /* RSInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSInternetViewController.swift; sourceTree = "<group>"; };
 		2CB75D211E134C7E00EBE76D /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
-		2CE12C231FD189EE006A965A /* DispatchQueue+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+.swift"; sourceTree = "<group>"; };
 		2CE12C251FD18C86006A965A /* relatedstocks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = relatedstocks.entitlements; sourceTree = "<group>"; };
 		2CEDD90C1E52E18D00F040B0 /* RSModelController+RSStoredStock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RSModelController+RSStoredStock.swift"; sourceTree = "<group>"; };
 		2CEDD90E1E52E1FF00F040B0 /* RSModelController+RSStoredKeyword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RSModelController+RSStoredKeyword.swift"; sourceTree = "<group>"; };
@@ -218,6 +213,7 @@
 				2C0C82C31E10F1D200CB4A5C /* RSModelController.swift */,
 				2CEDD90C1E52E18D00F040B0 /* RSModelController+RSStoredStock.swift */,
 				2CEDD90E1E52E1FF00F040B0 /* RSModelController+RSStoredKeyword.swift */,
+				2C20420F209332AE00132E57 /* LSFetchedResultsController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -283,12 +279,11 @@
 				2C020AEA1E0500CA002B009E /* controller */,
 				2C020AE31E04E303002B009E /* data */,
 				2C0F6AC11E03885B00F3A78A /* AppDelegate.swift */,
-				2C0F6AC31E03885B00F3A78A /* FirstViewController.swift */,
-				2C0F6AC51E03885B00F3A78A /* SecondViewController.swift */,
 				2C0F6AC71E03885B00F3A78A /* Main.storyboard */,
 				2C0F6ACA1E03885B00F3A78A /* Assets.xcassets */,
 				2C0F6ACC1E03885B00F3A78A /* LaunchScreen.storyboard */,
 				2C0F6ACF1E03885B00F3A78A /* Info.plist */,
+				2C1262762096F26F00937611 /* relatedstocks.plist */,
 				2C0F6AF31E03A82100F3A78A /* MainViewController.swift */,
 				2C0F6AF51E03B01600F3A78A /* GoogleService-Info.plist */,
 				2C0F6AFC1E03E21000F3A78A /* RSTabbarController.swift */,
@@ -319,13 +314,11 @@
 		2C0F6AF71E03D99800F3A78A /* leesam */ = {
 			isa = PBXGroup;
 			children = (
-				2C020AE81E04E891002B009E /* String+.swift */,
-				2CE12C231FD189EE006A965A /* DispatchQueue+.swift */,
-				2C020AE61E04E6E8002B009E /* UIViewController+.swift */,
+				2C13B8D020946DDA0089B653 /* RxCocoa */,
+				2C2042132093606300132E57 /* Rx */,
+				2C20420A20932CEA00132E57 /* LS */,
 				2C0F6AF81E03DA0900F3A78A /* GADBannerView+.swift */,
-				2C0F6AF91E03DA0900F3A78A /* UIView+.swift */,
 				2CF7C8D61E0BC2CE00050E2F /* URLRequest+.swift */,
-				2C0AC6031E12A75F00F344A8 /* UIImage+.swift */,
 				2C51FE481E24CBAD00D90F8F /* UIApplication+.swift */,
 				2CFF5AAD1E38E1BE001D4410 /* UIButton+.swift */,
 				2C1932701E9E46C70056262C /* GADInterstitial+.swift */,
@@ -335,6 +328,30 @@
 				2C1D44A21F4F00DF00617FA6 /* UIApplication+KakaoLink.swift */,
 			);
 			path = leesam;
+			sourceTree = "<group>";
+		};
+		2C13B8D020946DDA0089B653 /* RxCocoa */ = {
+			isa = PBXGroup;
+			children = (
+				2C13B8D120946DE70089B653 /* ObservableType+UITableView.swift */,
+			);
+			path = RxCocoa;
+			sourceTree = "<group>";
+		};
+		2C20420A20932CEA00132E57 /* LS */ = {
+			isa = PBXGroup;
+			children = (
+				2C20420D20932D2E00132E57 /* NSFetchedResultsController+UITableView.swift */,
+			);
+			path = LS;
+			sourceTree = "<group>";
+		};
+		2C2042132093606300132E57 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				2C2042142093614A00132E57 /* NSFetchedResultsController+Observable.swift */,
+			);
+			path = Rx;
 			sourceTree = "<group>";
 		};
 		2C51FE4A1E24CDD800D90F8F /* icon */ = {
@@ -391,7 +408,6 @@
 				2C0F6ABB1E03885B00F3A78A /* Frameworks */,
 				2C0F6ABC1E03885B00F3A78A /* Resources */,
 				04B34B2BD85FF2807D1F1B93 /* [CP] Embed Pods Frameworks */,
-				98FC17EA19E5144FB24E5461 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -410,8 +426,6 @@
 				2C0F6AD01E03885B00F3A78A /* Sources */,
 				2C0F6AD11E03885B00F3A78A /* Frameworks */,
 				2C0F6AD21E03885B00F3A78A /* Resources */,
-				4954B3A536C9A7D2A087403A /* [CP] Embed Pods Frameworks */,
-				BC4F04832C4FBD7F4714E02C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -431,8 +445,6 @@
 				2C0F6ADB1E03885B00F3A78A /* Sources */,
 				2C0F6ADC1E03885B00F3A78A /* Frameworks */,
 				2C0F6ADD1E03885B00F3A78A /* Resources */,
-				80434FF8741E4A97074CA644 /* [CP] Copy Pods Resources */,
-				5A92BC8F21321726DFF58C5E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -529,6 +541,7 @@
 				2C128982208742DA00F9C41F /* notification.png in Resources */,
 				2C0AC6021E12A11200F344A8 /* story.png in Resources */,
 				2C0C82BB1E10B32300CB4A5C /* stock.png in Resources */,
+				2C1262772096F26F00937611 /* relatedstocks.plist in Resources */,
 				2C0F6AC91E03885B00F3A78A /* Main.storyboard in Resources */,
 				2C51FE4C1E24CEDD00D90F8F /* refresh.png in Resources */,
 			);
@@ -576,85 +589,33 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-relatedstocks/Pods-relatedstocks-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/LSExtensions/LSExtensions.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
 				"${BUILT_PRODUCTS_DIR}/ProgressWebViewController/ProgressWebViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RestEssentials/RestEssentials.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LSExtensions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressWebViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RestEssentials.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relatedstocks/Pods-relatedstocks-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4954B3A536C9A7D2A087403A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relatedstocksTests/Pods-relatedstocksTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5A92BC8F21321726DFF58C5E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relatedstocksUITests/Pods-relatedstocksUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		80434FF8741E4A97074CA644 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relatedstocksUITests/Pods-relatedstocksUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		98FC17EA19E5144FB24E5461 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relatedstocks/Pods-relatedstocks-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B208336A39C871D20B0FCD30 /* [CP] Check Pods Manifest.lock */ = {
@@ -673,21 +634,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BC4F04832C4FBD7F4714E02C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-relatedstocksTests/Pods-relatedstocksTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D9C747904532E95095C258C4 /* [CP] Check Pods Manifest.lock */ = {
@@ -716,13 +662,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C1D44A31F4F00DF00617FA6 /* UIApplication+KakaoLink.swift in Sources */,
-				2C0F6AFB1E03DA0900F3A78A /* UIView+.swift in Sources */,
-				2C0F6AC61E03885B00F3A78A /* SecondViewController.swift in Sources */,
 				2CEDD90F1E52E1FF00F040B0 /* RSModelController+RSStoredKeyword.swift in Sources */,
-				2C020AE71E04E6E8002B009E /* UIViewController+.swift in Sources */,
 				2C63B6B71FDA721D00624D7D /* RSInternetViewController.swift in Sources */,
+				2C13B8CF20946D530089B653 /* NSFetchedResultsController+Observable.swift in Sources */,
 				2CF7C8D71E0BC2CE00050E2F /* URLRequest+.swift in Sources */,
+				2C20420E20932D2E00132E57 /* NSFetchedResultsController+UITableView.swift in Sources */,
 				2C020AEC1E05010F002B009E /* RSStockController.swift in Sources */,
+				2C204210209332AE00132E57 /* LSFetchedResultsController.swift in Sources */,
 				2C02CCFE1E11FA3E00DBA3CA /* RSFavoritesViewController.swift in Sources */,
 				2C0BA87F1E0E4111009E2414 /* RSKeywordTableViewController.swift in Sources */,
 				2C1932731E9E472F0056262C /* GADInterstialManager.swift in Sources */,
@@ -732,19 +678,15 @@
 				2C1A87FD2026BF4E00051A1F /* RSPushData.swift in Sources */,
 				2CEDD9111E52E5EF00F040B0 /* RSHotKeywordTableViewController.swift in Sources */,
 				2C020AE51E04E493002B009E /* RSStockItem.swift in Sources */,
-				2CE12C241FD189EF006A965A /* DispatchQueue+.swift in Sources */,
 				2CFF5AAE1E38E1BE001D4410 /* UIButton+.swift in Sources */,
 				2C0F6AFA1E03DA0900F3A78A /* GADBannerView+.swift in Sources */,
 				2C0C82C41E10F1D200CB4A5C /* RSModelController.swift in Sources */,
-				2C51FE491E24CBAD00D90F8F /* UIApplication+.swift in Sources */,
 				2C0BA87C1E0E0E1D009E2414 /* RSStockKeyword.swift in Sources */,
-				2C0AC6041E12A75F00F344A8 /* UIImage+.swift in Sources */,
 				2C1D44A11F4EFE3900617FA6 /* ReviewManager.swift in Sources */,
+				2C13B8D220946DE70089B653 /* ObservableType+UITableView.swift in Sources */,
 				2C1932711E9E46C70056262C /* GADInterstitial+.swift in Sources */,
-				2C020AE91E04E891002B009E /* String+.swift in Sources */,
 				2C0C82C01E10EE9800CB4A5C /* RSModel.xcdatamodeld in Sources */,
 				2C0F6AC21E03885B00F3A78A /* AppDelegate.swift in Sources */,
-				2C0F6AC41E03885B00F3A78A /* FirstViewController.swift in Sources */,
 				2C0F6AF41E03A82100F3A78A /* MainViewController.swift in Sources */,
 				2C0F85541F5010D600CEA691 /* GADRewardManager.swift in Sources */,
 				2CFE25F51E7B9BFA00CC9369 /* RSDefaults.swift in Sources */,

@@ -8,14 +8,24 @@
 
 import UIKit
 
+/**
+    Root UITabBarController
+ */
 class RSTabbarController: UITabBarController {
     private(set) static var shared : RSTabbarController!;
     
+    /**
+        Setter for Index of Tab to open by Kakao-Link or Push Notification
+     */
     static var startingIndex : Int = 0{
         didSet{
             RSTabbarController.shared?.selectedIndex = startingIndex;
         }
     }
+    
+    /**
+         Setter for Url to open by Kakao-Link or Push Notification
+     */
     static var startingUrl : URL!{
         didSet{
             RSTabbarController.shared?.loadUrl(startingUrl);
@@ -25,40 +35,27 @@ class RSTabbarController: UITabBarController {
     var oldIndex : Int = 0;
     
     override func viewWillAppear(_ animated: Bool) {
-        if let nav = self.viewControllers?[0] as? UINavigationController{
-//            nav.hidesBottomBarWhenPushed = false;
-        }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Store instance to process Kakao-Link or Push Notification
         RSTabbarController.shared = self;
         
+        //resizing image of tab items
         var items = self.tabBar.items ?? [];
         var iconSize = CGSize(width: 30.0, height: 30.0);
         items[0].image = UIImage(named: "search.png")?.image(withSize: iconSize);
         items[1].image = UIImage(named: "list.png")?.image(withSize: iconSize);
         items[2].image = UIImage(named: "story.png")?.image(withSize: iconSize);
         items[3].image = UIImage(named: "zoom.png")?.image(withSize: iconSize);
+        items[4].image = UIImage(named: "notification.png")?.image(withSize: iconSize);
         
-        if let nav = self.viewControllers?[2] as? UINavigationController{
-            if let view = nav.visibleViewController as? RSInternetViewController{
-//                view.url = NSURL(string:"http://221.149.97.129:8282/gnu/bbs/board.php?bo_table=stock_story") as URL!;
-//                view.hidesBottomBarWhenPushed = false;
-//                view.title = "주식이야기";
-//                view.tabBarItem.title = view.title;
-            }
-            
-        }
-
-        //self.navigationController?.tabBarItem.image = UIImage(named: "list.png")?.image(withSize: CGSize(width: 44.0, height: 44.0));
-//        items[0].title = "관련주식검색";
-//        items[1].title = "나의관심주";
-//        UITabBarItem(tabBarSystemItem: <#T##UITabBarSystemItem#>, tag: <#T##Int#>)
         // Do any additional setup after loading the view.
-        self.selectedIndex = RSTabbarController.startingIndex;
-        if RSTabbarController.startingUrl != nil{
-            self.loadUrl(RSTabbarController.startingUrl);
-        }
+        //Apply starting tab and staring url from Kakao-Link or Push Notification
+        //To fix bug of searchBar : When view controller appears first time, searchBar does not show keyboard.
+        self.selectedIndex = 1;
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,7 +63,16 @@ class RSTabbarController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.selectedIndex = RSTabbarController.startingIndex;
+        
+        if RSTabbarController.startingUrl != nil{
+            self.loadUrl(RSTabbarController.startingUrl);
+        }
+    }
+    
     func loadUrl(_ url : URL){
+        // MARK: Open web url with webView
         if let internetView = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "RSInternetViewController") as? RSInternetViewController{
             internetView.startingUrl = url.absoluteString;
             (RSTabbarController.shared.selectedViewController as? UINavigationController)?.pushViewController(internetView, animated: true);
@@ -78,12 +84,12 @@ class RSTabbarController: UITabBarController {
             return;
         }
         
-        print("tap tab bar. name[\(item.title)] index[\(self.selectedIndex)] old[\(self.oldIndex)]");
+        print("tap tab bar. name[\(item.title?.description ?? "")] index[\(self.selectedIndex.description)] old[\(self.oldIndex.description)]");
         //reset search view
         if index == 0 && self.oldIndex == index{
-            var nav = self.selectedViewController as? UINavigationController;
+            let nav = self.selectedViewController as? UINavigationController;
             nav?.popToRootViewController(animated: true);
-            var searchView = nav?.topViewController as? RSSearchTableViewController;
+            let searchView = nav?.topViewController as? RSSearchTableViewController;
             print("clear search view");
             searchView?.clear();
         }

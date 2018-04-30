@@ -3,51 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "RSSearchTableViewController.onCheckFav(button : UIButton) -&gt; ():RSSearchTableViewController.swift">
+         contextName = "RxNSFetchedResultsIterator.next():NSFetchedResultsController+Observable.swift">
          <PersistentStrings>
             <PersistentString
-               value = "stock.name">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "RSInternetViewController.viewDidLoad() -&gt; ():RSInternetViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.navigationController?.topViewController">
-            </PersistentString>
-            <PersistentString
-               value = "self.navigationController?.viewControllers.first?.classForCoder">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "RSSearchTableViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:RSSearchTableViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "cell.checkButton.isSelected">
-            </PersistentString>
-            <PersistentString
-               value = "cell.titleLabel.text">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AppDelegate.performPushCommand(_:body:category:item:):AppDelegate.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "category.rawValue">
-            </PersistentString>
-            <PersistentString
-               value = "&quot;\(category)&quot;">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "RSKeywordTableViewController.onDeleteKeyword(button : UIButton) -&gt; ():RSKeywordTableViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "button.superview is UITableViewCell">
+               value = "self.currentIndex">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -63,13 +22,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RSSearchTableViewController.viewDidLoad() -&gt; ():RSSearchTableViewController.swift">
+         contextName = "RSInternetViewController.viewDidLoad() -&gt; ():RSInternetViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.searchBar.viewController?.classForCoder">
+               value = "self.navigationController?.topViewController">
             </PersistentString>
             <PersistentString
-               value = "self.searchKeywordConroller.classForCoder">
+               value = "self.navigationController?.viewControllers.first?.classForCoder">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -86,6 +45,63 @@
          <PersistentStrings>
             <PersistentString
                value = "noti.keys">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RSSearchTableViewController.viewDidLoad() -&gt; ():RSSearchTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.searchBar.viewController?.classForCoder">
+            </PersistentString>
+            <PersistentString
+               value = "self.searchKeywordConroller.classForCoder">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RSSearchTableViewController.onCheckFav(button : UIButton) -&gt; ():RSSearchTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "stock.name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppDelegate.performPushCommand(_:body:category:item:):AppDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "category.rawValue">
+            </PersistentString>
+            <PersistentString
+               value = "&quot;\(category)&quot;">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RSSearchTableViewController.searchBarSearchButtonClicked(_:):RSSearchTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.searchBar.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RSSearchTableViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:RSSearchTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cell.checkButton.isSelected">
+            </PersistentString>
+            <PersistentString
+               value = "cell.titleLabel.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RSKeywordTableViewController.onDeleteKeyword(button : UIButton) -&gt; ():RSKeywordTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "button.superview is UITableViewCell">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

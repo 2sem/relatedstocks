@@ -173,7 +173,7 @@
             </objects>
             <point key="canvasLocation" x="-418" y="1394"/>
         </scene>
-        <!--Search-->
+        <!--관련주식검색-->
         <scene sceneID="H7g-uT-0Da">
             <objects>
                 <tableViewController id="uXc-Mf-Pwp" customClass="RSSearchTableViewController" customModule="relatedstocks" customModuleProvider="target" sceneMemberID="viewController">
@@ -245,7 +245,13 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Search" id="JcM-yl-nbH"/>
-                    <navigationItem key="navigationItem" id="IKW-rz-WfG"/>
+                    <navigationItem key="navigationItem" title="관련주식검색" id="IKW-rz-WfG">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="HaE-om-bC8">
+                            <connections>
+                                <action selector="onReview:" destination="uXc-Mf-Pwp" id="iza-Rc-4ZA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="UvN-lc-6sr">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -563,6 +569,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomBannerView" destination="pYq-4I-2zb" id="ocw-Y9-mM9"/>
+                        <outlet property="constraint_bottomBanner_Bottom" destination="An9-Dg-STf" id="2lE-0S-YOl"/>
                         <outlet property="containerView" destination="C5c-oQ-H9I" id="m6y-LV-lH1"/>
                         <outlet property="reviewButton" destination="fbs-M2-jAc" id="J3h-WT-Dsv"/>
                     </connections>

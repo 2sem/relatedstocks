@@ -42,6 +42,7 @@ extension RSModelController{
         return self.loadStocks(predicate: predicate, sortWays: nil);
     }
     
+    @discardableResult
     func createStock(name: String, keyword: String) -> RSStoredStock{
         let stock = NSEntityDescription.insertNewObject(forEntityName: EntityNames.RSStoredStock, into: self.context) as! RSStoredStock;
         

@@ -39,6 +39,12 @@ typedef void(^KNVNaviCompletionHandler)(NSError *_Nullable error);
 @interface KNVNaviLauncher : NSObject
 
 /*!
+ @property appStoreURL
+ @abstract 카카오내비 앱스토어 URL
+ */
+@property (readonly, class) NSURL *appStoreURL;
+
+/*!
  @property enableWebNavi
  @abstract 카카오내비가 설치되어 있지 않을 때 web 길안내 사용 여부. NO로 설정하면 AppStore로 이동함. default YES.
  */

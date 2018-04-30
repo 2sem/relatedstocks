@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.5</string>
+	<string>1.1.7</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>21</string>
+	<string>23</string>
 	<key>GoogleADUnitID</key>
 	<dict>
 		<key>FullAd</key>
@@ -38,6 +38,8 @@
 		<key>RewardAd</key>
 		<string>ca-app-pub-9684378399371172/5382380667</string>
 	</dict>
+	<key>Itunes App Id</key>
+	<string>1189758512</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>b6a4140bd033e58899a789ede456147f</string>
 	<key>LSApplicationQueriesSchemes</key>

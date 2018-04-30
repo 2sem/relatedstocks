@@ -11,6 +11,7 @@ import UserNotifications
 import GoogleMobileAds
 import RestEssentials
 import Firebase
+import LSExtensions
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UNUserNotificationCenterDelegate {
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         FirebaseApp.configure();
         self.reviewManager = ReviewManager(self.window!, interval: 60.0 * 60 * 24 * 2); //*
         self.reviewManager?.delegate = self;
@@ -33,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
         self.fullAd = GADInterstialManager(self.window!, unitId: GADInterstitial.loadUnitId(name: "FullAd") ?? "", interval: 60.0 * 60 * 1); //
         //self.fullAd?.delegate = self;
         //self.fullAd?.canShowFirstTime = false;
-        self.fullAd?.show();
+        //self.fullAd?.show();
         UNUserNotificationCenter.current().delegate = self;
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (result, error) in
             guard result else{
@@ -101,7 +103,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        var device = deviceToken.reduce("", {$0 + String(format: "%02X", $1)});
+        var device = deviceToken.hexString;
+            //.reduce("", {$0 + String(format: "%02X", $1)});
         print("APNs device[\(device)]");
         let restUrl = "http://222.122.212.176:3004/devices/insert";
         guard let rest = RestController.make(urlString: restUrl) else{

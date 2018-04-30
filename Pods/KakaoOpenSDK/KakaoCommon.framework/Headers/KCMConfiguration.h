@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Kakao Corp.
+ * Copyright 2017-2018 Kakao Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, KCMPhase) {
+    KCMPhaseRelease = 0,
+    KCMPhaseBeta,
+    KCMPhaseSandbox,
+    KCMPhaseAlpha,
+};
+
 @interface KCMConfiguration : NSObject <NSCopying>
 
+@property (assign, nonatomic) KCMPhase phase;
 @property (copy, nonatomic) NSString *appKey;
 @property (copy, nonatomic) NSString *appScheme;
 

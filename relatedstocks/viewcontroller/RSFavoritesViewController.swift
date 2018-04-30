@@ -7,14 +7,29 @@
 //
 
 import UIKit
+import CoreData
+import RxSwift
+import RxCocoa
 
-class RSFavoritesViewController: UITableViewController {
-    static let RSSearchCell = "RSSearchCell";
+class RSFavoritesViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+    static let Cell_Id = "RSSearchCell";
 
     var stocks : [RSStoredStock] = [];
     var editButton : UIBarButtonItem!;
     var doneButton : UIBarButtonItem!;
     var cancelButton : UIBarButtonItem!;
+    
+    lazy var fetchedResultsController : LSFetchedResultsController<RSStoredStock> = {
+        var moc : NSManagedObjectContext!;
+
+        DispatchQueue.main.syncInMain {
+            moc = RSModelController.Default.context;
+        }
+        
+        return LSFetchedResultsController.init("RSStoredStock", entityType: RSStoredStock.self, sortDescriptors: [NSSortDescriptor.init(key: "name", ascending: true)], moc: moc);
+    }();
+    //Rx Source for UITableView
+    //var fetchedResults: BehaviorRelay<[RSStoredStock]>!;
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false;
@@ -30,16 +45,32 @@ class RSFavoritesViewController: UITableViewController {
         ReviewManager.shared?.show();
     }
     
+    var dataSource : UITableViewDataSource?;
+    //var disposeBag = DisposeBag();
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        CGSize.init(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.setEditButton();
+        //Bind NSFetchedResultsController to UITableView
+        self.tableView.dataSource = nil;
+        self.dataSource = self.fetchedResultsController.fetchController.ls.bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, entityType: RSStoredStock.self, cellType: RSSearchCell.self, cellConfigurator: { (indexPath, entity, cell) in
+            cell.iconImage.image = UIImage(named: "stock.png");
+            cell.titleLabel?.text = entity.name;
+        });
+        self.fetchedResultsController.fetchController.delegate = self;
+        
+        // Implements with rxCocoa
+        /*self.disposeBag = self.fetchedResultsController.fetchController.rx.asRelay(RSStoredStock.self)
+            .asObservable().bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, cellType: RSSearchCell.self) { (index, entity, cell) in
+                print("create favorite cell. name[\(entity.name ?? "")]");
+            cell.iconImage.image = UIImage(named: "stock.png");
+            cell.titleLabel?.text = entity.name;
+        }
+        
+        self.tableView.rx.itemDeleted.subscribe { (indexPath) in
+            print("will remove entity");
+        }.disposed(by: self.disposeBag);
+        
+        self.setEditButton();*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,80 +130,28 @@ class RSFavoritesViewController: UITableViewController {
         
 //        }
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1;
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return self.stocks.count;
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell : RSSearchCell!;
-
-        cell = tableView.dequeueReusableCell(withIdentifier: RSSearchTableViewController.RSSearchCell, for: indexPath) as? RSSearchCell;
-
-        cell.iconImage.image = UIImage(named: "stock.png");
-        cell.titleLabel?.text = self.stocks[indexPath.row].name;
-        
-        // Configure the cell...
-
-        return cell
+    
+    // MARK: NSFetchedResultsControllerDelegate
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type{
+            case .delete:
+                guard let indexPath = indexPath else{
+                    return;
+                }
+                
+                self.tableView.deleteRows(at: [indexPath], with: .fade);
+                break;
+            case .insert:
+                guard let newIndexPath = newIndexPath else{
+                    return;
+                }
+                self.tableView.insertRows(at: [newIndexPath], with: .fade);
+                break;
+            default:
+                break;
+        }
     }
     
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-//            var cell = self.tableView.cellForRow(at: indexPath) as? RSSearchCell;
-//            var title = cell?.titleLabel.text;
-//            if title != nil{
-//                
-//            }
-            var stock = self.stocks[indexPath.row];
-            self.stocks.remove(at: indexPath.row);
-            RSModelController.Default.removeStock(stock: stock);
-            tableView.deleteRows(at: [indexPath], with: .fade);
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-
-//    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-//        return UITableViewCellEditingStyle.delete;
-//    }
-    
-    
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -180,8 +159,8 @@ class RSFavoritesViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let internetView = segue.destination as? RSInternetViewController{
-            var cell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as? RSSearchCell;
-            var company = cell?.titleLabel?.text;
+            let cell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as? RSSearchCell;
+            let company = cell?.titleLabel?.text;
             internetView.company = company!;
         }
     }

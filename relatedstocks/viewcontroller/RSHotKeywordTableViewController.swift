@@ -45,7 +45,7 @@ class RSHotKeywordTableViewController: UIViewController, UITableViewDelegate, UI
     
     func updateKeywords(){
         //        refreshControl.isRefreshing = true;
-        RSStockController.Default.requestKeywords { (keywords, error) in
+        RSStockController.shared.requestKeywords { (keywords, error) in
             guard error == nil else{
                 return;
             }

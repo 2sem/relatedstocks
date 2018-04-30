@@ -42,6 +42,7 @@ extension RSModelController{
         return self.loadKeywords(predicate: predicate, sortWays: nil);
     }
 
+    @discardableResult
     func createKeyword(name: String) -> RSStoredKeyword{
         let keyword = NSEntityDescription.insertNewObject(forEntityName: EntityNames.RSStoredKeyword, into: self.context) as! RSStoredKeyword;
         

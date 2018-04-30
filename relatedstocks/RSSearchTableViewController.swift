@@ -7,28 +7,30 @@
 //
 
 import UIKit
+import LSExtensions
+import CoreData
+import RxSwift
+import RxCocoa
 
-class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, RSKeywordTableViewDelegate, RSHotKeywordTableViewDelegate {
+class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, RSKeywordTableViewDelegate, RSHotKeywordTableViewDelegate, NSFetchedResultsControllerDelegate {
 
-    static let RSSearchCell = "RSSearchCell";
+    static let Cell_Id = "RSSearchCell";
     
-    var searchResults : [RSStockItem] = [];//[RSStockItem("우리들제약"), RSStockItem("바른손"), RSStockItem("위노바"), RSStockItem("서희건설"), RSStockItem("에이연희"), RSStockItem("궁일신동")];
-    var keywords : [RSStockKeyword] = []{
-        didSet{
-//            var strs : [String] = [];
-//            for k in keywords{
-//                strs.append(k.name ?? "");
-//            }
-            
-            /*DispatchQueue.main.async {
-                self.searchKeywordConroller.keywords = self.keywords;
-//                self.searchBar.scopeButtonTitles = strs;
-            }*/
-        }
-    }
+    /**
+     Search Results Smaple: [RSStockItem("우리들제약"), RSStockItem("바른손"), RSStockItem("위노바"), RSStockItem("서희건설"), RSStockItem("에이연희"), RSStockItem("궁일신동")];
+    */
+    //var searchResults : [RSStockItem] = [];
     
-//    @IBOutlet weak var searchBar: UISearchBar!
+    /**
+        Recommended keywords to search stock items
+    */
+    var keywords : [RSStockKeyword] = [];
+    
     private(set) static var shared : RSSearchTableViewController?;
+    
+    /**
+        Keyword to search by Kakao-Link or Push Notification
+    */
     static var startingKeyword = ""{
         didSet{
             RSSearchTableViewController.shared?.navigationController?.popViewController(animated: true);
@@ -36,6 +38,7 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
             RSSearchTableViewController.shared?.searchBar.text = startingKeyword;
         }
     }
+    
     var searchController : UISearchController!;
     var searchContainer : UISearchContainerViewController!;
     var searchBar: UISearchBar{
@@ -54,12 +57,39 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     var keywordView : UIView?;
     var hotKeywordController : RSHotKeywordTableViewController!;
     
+    lazy var fetchedResultsController : LSFetchedResultsController<RSStoredStock> = {
+        var moc : NSManagedObjectContext!;
+        
+        DispatchQueue.main.syncInMain {
+            moc = RSModelController.Default.context;
+        }
+        
+        let value = LSFetchedResultsController.init("RSStoredStock", entityType: RSStoredStock.self, sortDescriptors: [NSSortDescriptor.init(key: "name", ascending: true)], moc: moc);
+        value.fetch();
+        
+        return value;
+    }();
+    
+    var stocksDisposeBag = DisposeBag();
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData();
+        //self.tableView.reloadData();
     }
     
+    var testText = PublishSubject<String>();
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.dataSource = nil;
+        self.tableView.delegate = nil;
+        
+        
+        /*RSStockController.shared.stocksRelay.asObservable().asDriver(onErrorJustReturn: []).map { $0.any ? UITableViewCellSeparatorStyle.singleLine : UITableViewCellSeparatorStyle.none }
+        .drive(onNext: { (style) in
+            self.tableView.separatorStyle = style;
+            print("sets new table style[\(style)]");
+        })
+        .disposed(by: self.stocksDisposeBag);*/
+        
+        //self.searchBar.rx.text.bind
         RSSearchTableViewController.shared = self;
         self.showKeywordView();
         
@@ -67,59 +97,74 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         self.searchKeywordConroller = self.storyboard?.instantiateViewController(withIdentifier: "RSKeywordTableViewController") as? RSKeywordTableViewController;
         self.searchKeywordConroller.delegate = self;
         
+        // MARK: Creates searchController with Keyword Table
         self.searchController = UISearchController(searchResultsController: self.searchKeywordConroller);
-        self.searchContainer = UISearchContainerViewController(searchController: self.searchController);
-        
         self.searchController.searchResultsUpdater = self;
-        self.searchController.dimsBackgroundDuringPresentation = false;
-//        self.tableView.tableHeaderView = self.searchController.searchBar;
-        self.navigationItem.titleView = self.searchController.searchBar;
         self.searchController.hidesNavigationBarDuringPresentation = false;
-//        self.searchBar.delegate = self;
+
+        self.searchContainer = UISearchContainerViewController(searchController: self.searchController);
+
+        //var searchBar = UISearchBar.init();
+        self.navigationItem.titleView = self.searchBar;
+        //self.tableView.tableHeaderView = self.searchController.searchBar;
         
-        self.searchBar.delegate = self;
-//        self.searchBar.showsScopeBar = true;
-//        self.searchBar.scopeButtonTitles = ["문재인", "안철수", "이재명", "더민주", "정의당", "안희정"];
-//        self.searchBar.showsBookmarkButton = true;
-        self.searchBar.showsCancelButton = false;
-        self.searchBar.placeholder = "주식 키워드";
+        /*if #available(iOS 11.0, *){
+            self.navigationItem.searchController = self.searchController;
+            self.navigationItem.hidesSearchBarWhenScrolling = false;
+        }else{
+            self.tableView.tableHeaderView = self.searchBar;
+        }*/
         
-        //self.searchBar.showsSearchResultsButton = true;
-//        self.searchBar.selectedScopeButtonIndex = 0;
+        self.searchController.dimsBackgroundDuringPresentation = false;
+        searchBar.delegate = self;
+        searchBar.showsCancelButton = false;
+        searchBar.showsBookmarkButton = true;
+        searchBar.placeholder = "주식 키워드";
+        searchBar.showsScopeBar = false;
+        searchBar.resignFirstResponder();
+        self.searchController.dismiss(animated: true, completion: nil);
+
+        //self.searchController.isActive = true;
+        //self.searchBar.sizeToFit();
         
-        self.searchBar.showsScopeBar = false;
-        self.updateKeywords {
-//            if self.searchBar.selectedScopeButtonIndex == 0{
+        /*self.updateKeywords { [unowned self] in
             guard self.keywords.count > 0 else{
                 self.searchBar.showsScopeBar = false;
                 return;
             }
-
-//            self.searchBar.showsScopeBar = true;
-            //auto select
-            /*DispatchQueue.main.async {
-                self.searchBar.text = self.keywords[0].name;
-                self.search(withKeyword: self.searchBar.text ?? "");
-                self.searchBar.becomeFirstResponder();
-//                self.searchBar(self.searchBar, selectedScopeButtonIndexDidChange: 0);
-            }*/
-            
-//            }
-        }
-        
-//        self.searchBar.showsSearchResultsButton = true;
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        }*/
         self.definesPresentationContext = true;
         
-//        print("register into table[\(self.tableView)]");
-//        self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: RSSearchTableViewController.RSSearchCell);
-        return;
-        var nav = UINavigationController(rootViewController: self.searchContainer);
-        self.present(nav, animated: true, completion: nil);
+        self.fetchedResultsController.fetchController.delegate = self;
+        
+        RSStockController.shared.requestStocks(withKeyword: "")
+        .bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, cellType: RSSearchCell.self) { [weak self](row, stock, cell) in
+            guard self != nil else{
+                return;
+            }
+            
+            let indexPath = IndexPath.init(row: row, section: 0);
+            cell.iconImage.image = UIImage(named: "stock.png");
+            //cell.titleLabel?.text = self?.searchResults[indexPath.row].name;
+            cell.titleLabel?.text = stock.name;
+            
+            cell.checkButton.addTarget(self!, action: #selector(self!.onCheckFav(button:)), for: .touchUpInside);
+            
+            let isFav = self!.modelController.isExistStocks(withName: stock.name) ? true : false;
+            
+            cell.checkButton.isSelected = isFav;
+            print("check cell[\(indexPath.row.description)] name[\(stock.name ?? "")] button[\(cell.checkButton.description)] selected[\(isFav)]");
+        }.disposed(by: self.stocksDisposeBag);
+        
+        RSStockController.shared.requestStocks(withKeyword: "")
+            .map({ (stocks) -> UITableViewCellSeparatorStyle in
+                return stocks.any ? .singleLine : .none
+            })
+        .asDriver(onErrorJustReturn: .singleLine)
+            .drive(onNext: { [weak self](style) in
+                self?.tableView.separatorStyle = style;
+            })
+        .disposed(by: self.stocksDisposeBag);
     }
 
     override func didReceiveMemoryWarning() {
@@ -128,14 +173,18 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //self.searchBar.becomeFirstResponder();
+        //self.searchBar.becomeFirstResponder();
+        /*DispatchQueue.main.async { [weak self] in
+            self?.searchController.isActive = true;
+            self?.searchBar.becomeFirstResponder();
+        }*/
+        
         if !RSSearchTableViewController.startingKeyword.isEmpty{
-            //self.searchBar.text = RSSearchTableViewController.startingKeyword;
             self.search(withKeyword: RSSearchTableViewController.startingKeyword);
-            //self.searchBar(self.searchBar, textDidChange: self.searchBar.text!);
         }
         
         guard ReviewManager.shared?.canShow ?? false else{
-            //self.fullAd?.show();
             return;
         }
         ReviewManager.shared?.show();
@@ -149,47 +198,41 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         self.hotKeywordController.delegate = self;
         self.tableView.backgroundView = self.hotKeywordController.view;
     }
-    
-    func showEmptyView(){
-        if self.emptyLabelView == nil{
-            self.emptyLabelView = UILabel();
-            self.emptyLabelView?.sizeToFit();
-            self.emptyLabelView?.text = "no results T.T";
-            self.tableView.backgroundView = self.emptyLabelView;
-            self.emptyLabelView?.textAlignment = .center;
-            self.emptyLabelView?.sizeToFit();
-        }
-        
-        self.tableView.backgroundView = self.emptyLabelView;
-    }
 
-    func refresh(refreshControl : UIRefreshControl){
-        self.search(withKeyword: self.searchBar.text ?? "");
+    @objc func refresh(refreshControl : UIRefreshControl){
+        //self.search(withKeyword: self.searchBar.text ?? "");
+        refreshControl.endRefreshing();
     }
     
+    /**
+     Clean Search Bar and Search Result
+     */
     func clear(){
         self.searchBar.text = "";
-        //self.search(withKeyword: "");
-        self.searchResults = [];
+        self.search(withKeyword: "");
         self.searchController.dismiss(animated: true, completion: nil);
+        print("clear search result");
         self.tableView.reloadData();
     }
-    
+
     func search(withKeyword keyword: String){
-//        self.searchController.isActive = false;
         self.searchBar.text = keyword;
 
         self.searchController.dismiss(animated: true, completion: nil);
+        print("clear search result");
         DispatchQueue.main.syncInMain {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true;
         }
-        RSStockController.Default.requestStocks(withKeyword: keyword) { (items, error) in
+        // MARK: Gets stocks from sever by rest api
+        RSStockController.shared.requestStocks(withKeyword: keyword);
+        
+        /*RSStockController.shared.requestStocks(withKeyword: keyword) { (items, error) in
             guard items != nil else{
-                print("item request error. error[\(error)]");
+                print("item request error. error[\(error?.description)]");
                 DispatchQueue.main.syncInMain {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false;
                 }
-//                self.showCellularAlert(title: "Internet Unavailable");
+
                 self.openSettingsOrCancel(title: "서버에 연결할 수 없습니다", msg: "인터넷에 연결하려면, 셀룰러 데이터를 켜거나 Wi-Fi를 사용하십시오.", titleForOK: "확인", titleForSettings: "설정");
                 
                 DispatchQueue.main.async{
@@ -206,14 +249,13 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
                 self.tableView.reloadData();
                 self.refreshControl?.endRefreshing();
             }
-        }
+        }*/
     }
     
     func updateKeywords(completion: (() -> Void)?){
-        RSStockController.Default.requestKeywords { (keywords, error) in
-            DispatchQueue.main.syncInMain {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false;
-            }
+        //Gets hot keyword from server
+        RSStockController.shared.requestKeywords { [unowned self] (keywords, error) in
+            UIApplication.offNetworking();
             guard error == nil else{
                 return;
             }
@@ -232,12 +274,13 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: RSHotKeywordTableViewDelegatef
     func hotKeywordTable(controller: RSHotKeywordTableViewController, didSelectKeyword keyword: String) {
         self.searchBar.text = keyword;
+        self.searchController.dismiss(animated: true, completion: nil);
         self.search(withKeyword: keyword);
     }
     
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    /*override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1;
     }
@@ -263,69 +306,50 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("get cell from table[\(tableView)]");
         var cell : RSSearchCell!;
-//        guard self.tableView === tableView else {
-//            cell = UITableViewCell(style: .default, reuseIdentifier: nil);
-//            cell.textLabel?.text = "Recommend Keyword \(indexPath.row)";
-//            print("cell for recommend keyword. index[\(indexPath.row)]");
-//            return cell;
-//        }
-        cell = tableView.dequeueReusableCell(withIdentifier: RSSearchTableViewController.RSSearchCell, for: indexPath) as? RSSearchCell;
+        cell = tableView.dequeueReusableCell(withIdentifier: type(of: self).Cell_Id, for: indexPath) as? RSSearchCell;
         
-//        var cell = UITableViewCell();
-//        cell.textLabel?.text = self.searchResults[indexPath.row].name;
         cell.iconImage.image = UIImage(named: "stock.png");
         cell.titleLabel?.text = self.searchResults[indexPath.row].name;
         
-        
-//        var pointSize = CGFloat(20.0);
-//        cell.titleLabel?.font = cell.titleLabel?.font.withSize(pointSize);
-
-//        if indexPath.row % 2 == 0{
-//            cell.checkButton.isSelected = true;
-//        }
-        
-        
         cell.checkButton.addTarget(self, action: #selector(onCheckFav(button:)), for: .touchUpInside);
         
-        var isFav = self.modelController.isExistStocks(withName: cell.titleLabel.text ?? "") ? true : false;
+        let isFav = self.modelController.isExistStocks(withName: cell.titleLabel.text ?? "") ? true : false;
         
         cell.checkButton.isSelected = isFav;
-        print("check cell[\(indexPath.row)] name[\(cell.titleLabel.text)] button[\(cell.checkButton)] selected[\(isFav)]");
-//        DispatchQueue.main.sync{
-//            cell.checkButton.isSelected = isFav;
-//            cell.checkButton.isSelected = self.modelController.isExistStocks(withName: cell.titleLabel.text ?? "");
-//        }
-//        cell.layoutIfNeeded();
-        // Configure the cell...
+        print("check cell[\(indexPath.row.description)] name[\(cell.titleLabel.text)] button[\(cell.checkButton.description)] selected[\(isFav)]");
 
         return cell;
+    }*/
+    
+    @IBAction func onReview(_ button: UIBarButtonItem) {
+        ReviewManager.shared?.show(true);
     }
     
-    func onCheckFav(button : UIButton){
+    @IBAction func onCheckFav(button : UIButton){
+        // MARK: Toggles Favorite for the Stock Item
         let cell = button.superview?.superview as! RSSearchCell;
-//        print("check fav cell -> \(cell)");
-        var value = !button.isSelected;
+        let value = !button.isSelected;
 
-        var stock = self.modelController.findStocks(withName: cell.titleLabel.text ?? "").first;
+        //Checks if this stock item is already appended into favorites
+        let stock = self.modelController.findStocks(withName: cell.titleLabel.text ?? "").first;
         if cell.checkButton.isSelected{
-            
             guard stock != nil else{
                 return;
             }
             
+            //Remove stock item from favorites
             self.modelController.removeStock(stock: stock!);
         }else{
             guard stock == nil else{
                 return;
             }
             
+            //Appends stock item into favorites
             self.modelController.createStock(name: cell.titleLabel.text ?? "", keyword: self.searchBar.text ?? "");
         }
         
         cell.checkButton.isSelected = value;
         self.modelController.saveChanges();
-//        var stock : RSStoredStock?;
-        
     }
 
     /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -382,11 +406,12 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
 
     // MARK: UISearchBarDelegate
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        print("onclick bookmark button. keyword[\(searchBar.text)]");
+        print("onclick bookmark button. keyword[\(searchBar.text ?? "")]");
+        self.search(withKeyword: "");
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("onclick cancel button. keyword[\(searchBar.text)]");
+        print("onclick cancel button. keyword[\(searchBar.text ?? "")]");
     }
     
     func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
@@ -395,24 +420,16 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         var keywords = searchBar.scopeButtonTitles ?? []
-        let selectedKeyword = keywords[selectedScope] ?? searchBar.text;
+        let selectedKeyword = keywords[selectedScope];
         searchBar.text = selectedKeyword;
-        
-        self.search(withKeyword: selectedKeyword!);
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty{
-            self.searchResults = [];
-            self.tableView.reloadData();
-            self.hotKeywordController.updateKeywords();
+            self.search(withKeyword: searchText);
         }else{
             self.searchKeywordConroller.updateKeywords(keyword: searchText);
         }
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -421,14 +438,18 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
             RSModelController.Default.createKeyword(name: self.searchBar.text ?? "");
             RSModelController.Default.saveChanges();
         }
-        
-//        searchBar.endEditing(true);
+     
         searchBar.resignFirstResponder();
+        self.searchController.dismiss(animated: true, completion: nil);
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        self.searchController.isActive = true;
+        self.navigationController?.isNavigationBarHidden = false;
         self.searchKeywordConroller.updateKeywords(keyword: searchBar.text ?? "");
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.navigationController?.isNavigationBarHidden = false;
     }
     
 //    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
@@ -440,15 +461,37 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         print("update keyword history");
     }
     
+    // MARK: NSFetchedResultsControllerDelegate
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type{
+            case .delete:
+                guard let stock = anObject as? RSStoredStock else{
+                    return;
+                }
+                
+                let searchCell = (self.tableView.visibleCells as? [RSSearchCell] ?? []).first { (cell) -> Bool in
+                    cell.titleLabel.text == stock.name
+                };
+                
+                searchCell?.checkButton.isSelected = false;
+                break;
+            default:
+                break;
+        }
+    }
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let internetView = segue.destination as? RSInternetViewController{
-            var cell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as? RSSearchCell;
-            var company = cell?.titleLabel?.text;
-            internetView.company = company!;
+            //Configure view to show detail for the selected Stock item
+            let cell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as? RSSearchCell;
+            guard let company = cell?.titleLabel?.text else{
+                return;
+            }
+            
+            internetView.company = company;
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

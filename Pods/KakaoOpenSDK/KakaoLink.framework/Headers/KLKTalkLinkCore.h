@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Kakao Corp.
+ * Copyright 2017-2018 Kakao Corp.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,12 @@
  */
 
 #import <Foundation/Foundation.h>
+
+typedef NS_ENUM(NSUInteger, KLKTalkLinkAction) {
+    KLKTalkLinkActionDefault,
+    KLKTalkLinkActionScrap,
+    KLKTalkLinkActionCustom,
+};
 
 @class KCMConfiguration;
 @class KMTTemplate;
@@ -35,6 +41,14 @@
 - (NSURLRequest *)requestScrapWithURL:(NSURL *)URL templateId:(NSString *)templateId templateArgs:(NSDictionary<NSString *,NSString *> *)templateArgs error:(NSError **)error;
 - (NSURLRequest *)requestCustomWithTemplateId:(NSString *)templateId templateArgs:(NSDictionary<NSString *,NSString *> *)templateArgs error:(NSError **)error;
 
+- (NSURL *)sharerURLWithTemplate:(KMTTemplate *)template error:(NSError **)error;
+- (NSURL *)sharerURLWithURL:(NSURL *)URL error:(NSError **)error;
+- (NSURL *)sharerURLWithURL:(NSURL *)URL templateId:(NSString *)templateId templateArgs:(NSDictionary<NSString *,NSString *> *)templateArgs error:(NSError **)error;
+- (NSURL *)sharerURLWithTemplateId:(NSString *)templateId templateArgs:(NSDictionary<NSString *,NSString *> *)templateArgs error:(NSError **)error;
+
 - (void)handleResponseWithResponse:(NSURLResponse *)response data:(NSData *)data completion:(void (^)(NSURL *talkLinkURL, NSDictionary *warningMsg, NSDictionary *argumentMsg, NSError *error))completion;
+
+@property (readonly) NSString *executionScheme;
+@property (readonly) NSString *versionScheme;
 
 @end
