@@ -12,7 +12,7 @@ import CoreData
 import RxSwift
 import RxCocoa
 
-class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, RSKeywordTableViewDelegate, RSHotKeywordTableViewDelegate, NSFetchedResultsControllerDelegate {
+class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, RSKeywordTableViewDelegate,  NSFetchedResultsControllerDelegate {
 
     static let Cell_Id = "RSSearchCell";
     
@@ -41,9 +41,9 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     
     var searchController : UISearchController!;
     var searchContainer : UISearchContainerViewController!;
-    var searchBar: UISearchBar{
+    var searchBar: UISearchBar!{
         get{
-            return self.searchController.searchBar;
+            return self.searchController?.searchBar;
         }
     }
     var searchKeywordConroller : RSKeywordTableViewController!;
@@ -80,8 +80,8 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         super.viewDidLoad()
         self.tableView.dataSource = nil;
         self.tableView.delegate = nil;
-        
-        
+
+        self.showKeywordView();
         /*RSStockController.shared.stocksRelay.asObservable().asDriver(onErrorJustReturn: []).map { $0.any ? UITableViewCellSeparatorStyle.singleLine : UITableViewCellSeparatorStyle.none }
         .drive(onNext: { (style) in
             self.tableView.separatorStyle = style;
@@ -91,7 +91,6 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         
         //self.searchBar.rx.text.bind
         RSSearchTableViewController.shared = self;
-        self.showKeywordView();
         
         self.refreshControl?.addTarget(self, action: #selector(refresh(refreshControl:)), for: .valueChanged);
         self.searchKeywordConroller = self.storyboard?.instantiateViewController(withIdentifier: "RSKeywordTableViewController") as? RSKeywordTableViewController;
@@ -136,7 +135,7 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         self.definesPresentationContext = true;
         
         self.fetchedResultsController.fetchController.delegate = self;
-        
+    
         RSStockController.shared.requestStocks(withKeyword: "")
         .bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, cellType: RSSearchCell.self) { [weak self](row, stock, cell) in
             guard self != nil else{
@@ -153,7 +152,7 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
             let isFav = self!.modelController.isExistStocks(withName: stock.name) ? true : false;
             
             cell.checkButton.isSelected = isFav;
-            print("check cell[\(indexPath.row.description)] name[\(stock.name ?? "")] button[\(cell.checkButton.description)] selected[\(isFav)]");
+            print("check cell[\(indexPath.row.description)] name[\(stock.name)] button[\(cell.checkButton.description)] selected[\(isFav.description)]");
         }.disposed(by: self.stocksDisposeBag);
         
         RSStockController.shared.requestStocks(withKeyword: "")
@@ -193,9 +192,11 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     func showKeywordView(){
         if self.hotKeywordController == nil{
             self.hotKeywordController = self.storyboard?.instantiateViewController(withIdentifier: "RSHotKeywordTableViewController") as? RSHotKeywordTableViewController;
+            self.hotKeywordController.selectedKeyword.subscribe(onNext: { (keyword) in
+                self.search(withKeyword: keyword);
+            }).disposed(by: self.stocksDisposeBag);
         }
         
-        self.hotKeywordController.delegate = self;
         self.tableView.backgroundView = self.hotKeywordController.view;
     }
 
@@ -216,13 +217,10 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     }
 
     func search(withKeyword keyword: String){
-        self.searchBar.text = keyword;
+        self.searchBar?.text = keyword;
 
-        self.searchController.dismiss(animated: true, completion: nil);
+        self.searchController?.dismiss(animated: true, completion: nil);
         print("clear search result");
-        DispatchQueue.main.syncInMain {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true;
-        }
         // MARK: Gets stocks from sever by rest api
         RSStockController.shared.requestStocks(withKeyword: keyword);
         
@@ -252,17 +250,9 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         }*/
     }
     
-    func updateKeywords(completion: (() -> Void)?){
+    func updateKeywords(){
         //Gets hot keyword from server
-        RSStockController.shared.requestKeywords { [unowned self] (keywords, error) in
-            UIApplication.offNetworking();
-            guard error == nil else{
-                return;
-            }
-            
-            self.keywords = keywords ?? [];
-            completion?();
-        }
+        RSStockController.shared.requestKeywords();
     }
     
     // MARK: RSKeywordTableViewDelegate

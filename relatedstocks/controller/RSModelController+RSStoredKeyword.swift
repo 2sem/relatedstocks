@@ -23,22 +23,22 @@ extension RSModelController{
         
         do{
             values = try self.context.fetch(requester) as! [RSStoredKeyword];
-            print("fetch keywords with predicate[\(predicate)] count[\(values.count)]");
+            print("fetch keywords with predicate[\(predicate?.description ?? "")] count[\(values.count.description)]");
             completion?(values, nil);
         } catch let error{
-            fatalError("Can not load Keywords from DB");
+            fatalError("Can not load Keywords from DB. error[\(error)]");
         }
         
         return values;
     }
 
     func isExistKeywords(withName name : String) -> Bool{
-        var predicate = NSPredicate(format: "name CONTAINS \"\(name)\"");
+        let predicate = NSPredicate(format: "name CONTAINS \"\(name)\"");
         return !self.loadKeywords(predicate: predicate, sortWays: nil).isEmpty;
     }
 
     func findKeywords(withName name : String) -> [RSStoredKeyword]{
-        var predicate = NSPredicate(format: "name CONTAINS \"\(name)\"");
+        let predicate = NSPredicate(format: "name CONTAINS \"\(name)\"");
         return self.loadKeywords(predicate: predicate, sortWays: nil);
     }
 

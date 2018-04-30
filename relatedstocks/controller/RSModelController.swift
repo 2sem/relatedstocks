@@ -20,18 +20,12 @@ class RSModelController : NSObject{
     private static var _instance = RSModelController();
     static var Default : RSModelController{
         get{
-            var timeout = DispatchTime.now() + DispatchTimeInterval.seconds(3);
             print("enter RSModelController instance - \(self) - \(Thread.current)");
-            var value = _instance;
-//            value.waitInit();
+            let value = _instance;
+            
             print("wait RSModelController instance - \(self) - \(Thread.current)");
-//            self.semaphore.signal();
-//            self.semaphore.wait();
-//            self.semaphore.wait(timeout: timeout);
             self.dispatchGroupForInit.wait();
-//            self.dispatchGroupForInit.notify(queue: DispatchQueue.main) { 
-                print("exit RSModelController instance - \(self) - \(Thread.current)");
-//            }
+            print("exit RSModelController instance - \(self) - \(Thread.current)");
             
             return value;
         }

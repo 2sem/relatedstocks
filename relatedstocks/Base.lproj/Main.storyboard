@@ -332,6 +332,7 @@
                                         <constraint firstItem="omP-d2-2Go" firstAttribute="bottom" secondItem="Rf5-Y6-kFv" secondAttribute="bottom" constant="-4" id="1Lf-zD-lvf"/>
                                         <constraint firstItem="omP-d2-2Go" firstAttribute="top" secondItem="Rf5-Y6-kFv" secondAttribute="top" constant="8" id="EFl-ID-Vh7"/>
                                         <constraint firstItem="omP-d2-2Go" firstAttribute="leading" secondItem="Rf5-Y6-kFv" secondAttribute="leading" constant="8" id="LY4-Hk-1Fk"/>
+                                        <constraint firstItem="LN0-m1-jCP" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Rf5-Y6-kFv" secondAttribute="trailing" id="aSz-2F-i9O"/>
                                         <constraint firstItem="LN0-m1-jCP" firstAttribute="leading" secondItem="omP-d2-2Go" secondAttribute="trailing" constant="10" id="cSn-UN-DqN"/>
                                         <constraint firstItem="LN0-m1-jCP" firstAttribute="top" secondItem="omP-d2-2Go" secondAttribute="top" id="iUg-2z-Mm6"/>
                                         <constraint firstItem="LN0-m1-jCP" firstAttribute="bottom" secondItem="omP-d2-2Go" secondAttribute="bottom" id="th9-nJ-eXv"/>

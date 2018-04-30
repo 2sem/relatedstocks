@@ -92,7 +92,7 @@ class RSFavoritesViewController: UITableViewController, NSFetchedResultsControll
         self.navigationItem.rightBarButtonItem = self.editButton;
     }
     
-    func onBeginEdit(button : UIBarButtonItem){
+    @IBAction func onBeginEdit(button : UIBarButtonItem){
         self.tableView.setEditing(true, animated: true);
         if self.doneButton == nil{
 //            self.doneButton = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: #selector(onEndEdit(button:)));
@@ -107,14 +107,14 @@ class RSFavoritesViewController: UITableViewController, NSFetchedResultsControll
         self.navigationItem.leftBarButtonItem = self.cancelButton;
     }
     
-    func onEndEdit(button : UIBarButtonItem){
+    @IBAction func onEndEdit(button : UIBarButtonItem){
         self.setEditButton();
         self.tableView.setEditing(false, animated: true);
         self.navigationItem.leftBarButtonItem = nil;
         RSModelController.Default.saveChanges();
     }
     
-    func onCancelEdit(button : UIBarButtonItem){
+    @IBAction func onCancelEdit(button : UIBarButtonItem){
         var needToReload = !RSModelController.Default.isSaved;
         RSModelController.Default.reset();
         defer{

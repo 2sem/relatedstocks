@@ -11,11 +11,11 @@ import CoreData
 import RxSwift
 import RxCocoa
 
-extension NSFetchedResultsController: ReactiveCompatible{
+/*extension NSFetchedResultsController: ReactiveCompatible{
     /*public var rx: Reactive<NSFetchedResultsController<ResultType>>{
         return RxNSFetchedResultsController.init(self as! NSFetchedResultsController<NSFetchRequestResult>);
     }*/
-}
+}*/
 
 extension Reactive where Base: NSFetchedResultsController<NSFetchRequestResult>{
     func asRelay<Entity>(_ entityType: Entity.Type) -> BehaviorRelay<[Entity]> where Entity: NSFetchRequestResult{

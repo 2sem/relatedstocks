@@ -23,22 +23,22 @@ extension RSModelController{
         
         do{
             values = try self.context.fetch(requester) as! [RSStoredStock];
-            print("fetch stocks with predicate[\(predicate)] count[\(values.count)]");
+            print("fetch stocks with predicate[\(predicate?.description ?? "")] count[\(values.count.description)]");
             completion?(values, nil);
         } catch let error{
-            fatalError("Can not load Stocks from DB");
+            fatalError("Can not load Stocks from DB. error[\(error)]");
         }
         
         return values;
     }
     
     func isExistStocks(withName name : String) -> Bool{
-        var predicate = NSPredicate(format: "name == \"\(name)\"");
+        let predicate = NSPredicate(format: "name == \"\(name)\"");
         return !self.loadStocks(predicate: predicate, sortWays: nil).isEmpty;
     }
     
     func findStocks(withName name : String) -> [RSStoredStock]{
-        var predicate = NSPredicate(format: "name == \"\(name)\"");
+        let predicate = NSPredicate(format: "name == \"\(name)\"");
         return self.loadStocks(predicate: predicate, sortWays: nil);
     }
     

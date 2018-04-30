@@ -17,7 +17,7 @@ extension UIButton{
         }
         
         set(value){
-            var image = value?.withRenderingMode(.alwaysTemplate);
+            let image = value?.withRenderingMode(.alwaysTemplate);
             self.setImage(image, for: .selected);
         }
     }
@@ -29,7 +29,7 @@ extension UIButton{
         }
         
         set(value){
-            var image = value?.withRenderingMode(.alwaysTemplate);
+            let image = value?.withRenderingMode(.alwaysTemplate);
             self.setImage(image, for: .normal);
         }
     }

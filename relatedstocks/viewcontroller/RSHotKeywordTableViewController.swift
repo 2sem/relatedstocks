@@ -7,17 +7,14 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
-protocol RSHotKeywordTableViewDelegate {
-    func hotKeywordTable(controller : RSHotKeywordTableViewController, didSelectKeyword keyword: String);
-}
-
-class RSHotKeywordTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    static let RSKeywordCell = "RSKeywordCell";
+class RSHotKeywordTableViewController: UIViewController {
+    static let Cell_Id = "RSKeywordCell";
     
-    var keywords : [RSStockKeyword] = [];
-    
-    var delegate : RSHotKeywordTableViewDelegate?;
+    //var keywords : [RSStockKeyword] = [];
+    var selectedKeyword = BehaviorSubject<String>.init(value: "");
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,109 +26,47 @@ class RSHotKeywordTableViewController: UIViewController, UITableViewDelegate, UI
         //self.updateKeywords();
     }
     
+    var keywordsDisposeBag = DisposeBag();
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.updateKeywords();
-//        self.refreshControl?.addTarget(self, action: #selector(updateKeywords(refreshControl:)), for: .valueChanged);
-        //        self.view.backgroundColor = UIColor.red;
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        self.tableView.dataSource = nil;
+        self.tableView.delegate = nil;
         
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: RSHotKeywordTableViewController.RSKeywordCell);
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: type(of: self).Cell_Id);
+        
+        RSStockController.shared.requestKeywords().bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, cellType: UITableViewCell.self) { (row, keyword, cell) in
+            cell.textLabel?.text = keyword.name;
+            print("print keyword cell. keyword[\(cell.textLabel?.text ?? "")]");
+            
+            let pointSize = CGFloat(17.0);
+            cell.textLabel?.font = cell.textLabel?.font.withSize(pointSize);
+            cell.textLabel?.textColor = UIColor.blue;
+            cell.textLabel?.highlightedTextColor = UIColor.gray;
+            cell.textLabel?.textAlignment = .center;
+            cell.selectionStyle = .none;
+        }.disposed(by: self.keywordsDisposeBag);
+        
+        self.tableView.rx.modelSelected(RSStockKeyword.self)
+            .subscribe(onNext: { [weak self](keyword) in
+                guard self != nil else{
+                    return;
+                }
+                
+                self?.selectedKeyword.onNext(keyword.name ?? "");
+            }, onError: nil)
+        .disposed(by: self.keywordsDisposeBag);
     }
     
     func updateKeywords(){
         //        refreshControl.isRefreshing = true;
-        RSStockController.shared.requestKeywords { (keywords, error) in
-            guard error == nil else{
-                return;
-            }
-            
-            self.keywords = keywords!;
-            DispatchQueue.main.async {
-                self.tableView.reloadData();
-//                refreshControl.endRefreshing();
-            }
-        }
+        RSStockController.shared.requestKeywords();
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // MARK: - Table view data source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1;
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return self.keywords.count;
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell : UITableViewCell!;
-        
-        cell = tableView.dequeueReusableCell(withIdentifier: RSHotKeywordTableViewController.RSKeywordCell, for: indexPath);
-        
-        //        var cell = UITableViewCell();
-        cell.textLabel?.text = self.keywords[indexPath.row].name;
-        print("print keyword cell. keyword[\(cell.textLabel?.text ?? "")]");
-        let pointSize = CGFloat(17.0);
-        cell.textLabel?.font = cell.textLabel?.font.withSize(pointSize);
-        cell.textLabel?.textColor = UIColor.blue;
-        cell.textLabel?.highlightedTextColor = UIColor.gray;
-        cell.textLabel?.textAlignment = .center;
-        cell.selectionStyle = .none;
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let keyword = self.keywords[indexPath.row].name ?? "";
-        self.delegate?.hotKeywordTable(controller: self, didSelectKeyword: keyword);
-    }
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
     
     /*
      // MARK: - Navigation

@@ -58,31 +58,31 @@ class RSInternetViewController: ProgressWebViewController {
             self.shareByKakao();
         }
         return;
-        var acts = [UIAlertAction(title: "'\(self.company)' 공유", style: .default) { (act) in
-            var name = self.nibBundle?.infoDictionary?["CFBundleDisplayName"] ?? "";
+        /*let acts = [UIAlertAction(title: "'\(self.company)' 공유", style: .default) { (act) in
+            let name = self.nibBundle?.infoDictionary?["CFBundleDisplayName"] ?? "";
             self.share(["\(self.url?.absoluteString)\n#\(name)"]);
             },
                     UIAlertAction(title: "앱 추천하기", style: .default) { (act) in
                         self.share(["\(UIApplication.shared.urlForItunes.absoluteString)"]);
             },
                     UIAlertAction(title: "취소", style: .cancel, handler: nil)]
-        self.showAlert(title: "주식 공유", msg: "친구들에게 '\(self.title ?? "")'을(를) 공유하거나 관련주식검색기를 추천하세요", actions: acts, style: .alert);
+        self.showAlert(title: "주식 공유", msg: "친구들에게 '\(self.title ?? "")'을(를) 공유하거나 관련주식검색기를 추천하세요", actions: acts, style: .alert);*/
     }
     
     func shareByKakao(){
-        var kakaoLink = KMTLinkObject();
+        let kakaoLink = KMTLinkObject();
         kakaoLink.webURL = self.url;
         kakaoLink.iosExecutionParams = "category=company&item=\(self.company)";
         kakaoLink.iosExecutionParams = kakaoLink.iosExecutionParams!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed);
         kakaoLink.androidExecutionParams = kakaoLink.iosExecutionParams;
         
         //var kakaoContent = KLKContentObject(title: UIApplication.shared.displayName ?? "", imageURL: URL.init(string: "https://is1-ssl.mzstatic.com/image/thumb/Newsstand122/v4/f4/82/d5/f482d52f-18e7-3bad-03b7-f93b01379478/Icon-76@2x.png.png/0x0ss.png")!, link: kakaoLink);
-        var kakaoContent = KMTContentObject(title: "추천 종목", imageURL: URL.init(string: "http://andy3938.cafe24.com/stockseeker_512.png")!, link: kakaoLink);
+        let kakaoContent = KMTContentObject(title: "추천 종목", imageURL: URL.init(string: "http://andy3938.cafe24.com/stockseeker_512.png")!, link: kakaoLink);
         kakaoContent.imageWidth = 120;
         kakaoContent.imageHeight = 120;
         kakaoContent.desc = self.company;
         
-        var kakaoTemplate = KMTFeedTemplate.init(builderBlock: { (kakaoBuilder) in
+        let kakaoTemplate = KMTFeedTemplate.init(builderBlock: { (kakaoBuilder) in
             kakaoBuilder.content = kakaoContent;
             //kakaoBuilder.buttons?.add(kakaoWebButton);
             //link can't have more than two buttons

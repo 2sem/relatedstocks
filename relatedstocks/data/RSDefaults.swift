@@ -23,7 +23,7 @@ class RSDefaults{
     
     static var LastFullADShown : Date{
         get{
-            var seconds = Defaults.double(forKey: Keys.LastFullADShown);
+            let seconds = Defaults.double(forKey: Keys.LastFullADShown);
             return Date.init(timeIntervalSince1970: seconds);
         }
         
@@ -34,7 +34,7 @@ class RSDefaults{
     
     static var LastRewardADShown : Date{
         get{
-            var seconds = Defaults.double(forKey: Keys.LastRewardADShown);
+            let seconds = Defaults.double(forKey: Keys.LastRewardADShown);
             return Date.init(timeIntervalSince1970: seconds);
         }
         
@@ -45,7 +45,7 @@ class RSDefaults{
     
     static var LastShareShown : Date{
         get{
-            var seconds = Defaults.double(forKey: Keys.LastShareShown);
+            let seconds = Defaults.double(forKey: Keys.LastShareShown);
             return Date.init(timeIntervalSince1970: seconds);
         }
         

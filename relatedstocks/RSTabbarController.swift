@@ -45,7 +45,7 @@ class RSTabbarController: UITabBarController {
         
         //resizing image of tab items
         var items = self.tabBar.items ?? [];
-        var iconSize = CGSize(width: 30.0, height: 30.0);
+        let iconSize = CGSize(width: 30.0, height: 30.0);
         items[0].image = UIImage(named: "search.png")?.image(withSize: iconSize);
         items[1].image = UIImage(named: "list.png")?.image(withSize: iconSize);
         items[2].image = UIImage(named: "story.png")?.image(withSize: iconSize);
