@@ -72,10 +72,14 @@ class RSTabbarController: UITabBarController {
     }
     
     func loadUrl(_ url : URL){
+        print("try open url[\(url.description) with internetView]");
+        
         // MARK: Open web url with webView
-        if let internetView = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "RSInternetViewController") as? RSInternetViewController{
+        if let internetView = self.storyboard?.instantiateViewController(withIdentifier: "RSInternetViewController") as? RSInternetViewController{
             internetView.startingUrl = url.absoluteString;
             (RSTabbarController.shared.selectedViewController as? UINavigationController)?.pushViewController(internetView, animated: true);
+        }else{
+            print("could not create internetView]");
         }
     }
     

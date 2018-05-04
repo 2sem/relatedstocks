@@ -48,13 +48,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
             }
         }
         
+        /**
+         Nodejs:
+             {
+                 title: ..
+                 body: ..
+                 sound: "default",
+                 topic: "com.y2k..."
+                 payload: {
+                     category: category,
+                     item: item
+                 }
+             }
+        */
         if let push = launchOptions?[.remoteNotification] as? [String: AnyObject]{
             let noti = push["aps"] as! [String: AnyObject];
             let alert = noti["alert"] as! [String: AnyObject];
             let title = alert["title"] as? String ?? "";
             let body = alert["body"] as? String ?? "";
-            let category = alert["category"] as? String ?? "";
-            let item = alert["item"] as? String ?? "";
+            //Custom data can be receive from 'aps' not 'alert'
+            let category = push["category"] as? String ?? "";
+            let item = push["item"] as? String ?? "";
             
             self.performPushCommand(title, body: body, category: category, item: item); 
             print("launching with push[\(push)]");
@@ -130,6 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
     
     func performPushCommand(_ title : String, body : String, category : String, item : String){
         let category = RSPushData.Category(rawValue: category);
+        print("parse push command. category[\(category)] item[\(item)] title[\(title)] body[\(body)]");
         
         switch category{
         case .company?:
@@ -137,6 +152,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
             RSSearchTableViewController.startingKeyword = item;
             break;
         case .naver?:
+            print("push command. open naver. item[\(item)]");
             RSTabbarController.startingIndex = 0;
             RSTabbarController.startingUrl = item.naverUrlForSearch;
             break;
@@ -145,6 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
             RSTabbarController.startingUrl = URL(string: "http://andy3938.cafe24.com/gnu/bbs/board.php?bo_table=stock_story&wr_id=\(item)");
             break;
         default:
+            print("receive unkown command. category[\(category.debugDescription)]");
             RSTabbarController.startingIndex = 0;
             RSSearchTableViewController.startingKeyword = item.isEmpty ? body : item;
             break;

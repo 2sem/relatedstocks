@@ -46,6 +46,9 @@
             <PersistentString
                value = "noti.keys">
             </PersistentString>
+            <PersistentString
+               value = "push[&quot;item&quot;] as? String ?? &quot;&quot;">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -71,18 +74,10 @@
          contextName = "AppDelegate.performPushCommand(_:body:category:item:):AppDelegate.swift">
          <PersistentStrings>
             <PersistentString
-               value = "category.rawValue">
-            </PersistentString>
-            <PersistentString
                value = "&quot;\(category)&quot;">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "RSSearchTableViewController.searchBarSearchButtonClicked(_:):RSSearchTableViewController.swift">
-         <PersistentStrings>
             <PersistentString
-               value = "self.searchBar.text">
+               value = "category.rawValue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -98,15 +93,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RSSearchTableViewController.searchBarSearchButtonClicked(_:):RSSearchTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.searchBar.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GADRewardManager.__show() -&gt; ():GADRewardManager.swift">
+      </ContextState>
+      <ContextState
          contextName = "RSKeywordTableViewController.onDeleteKeyword(button : UIButton) -&gt; ():RSKeywordTableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "button.superview is UITableViewCell">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "GADRewardManager.__show() -&gt; ():GADRewardManager.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
