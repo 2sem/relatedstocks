@@ -23,10 +23,10 @@ class RSFavoritesViewController: UITableViewController, NSFetchedResultsControll
         var moc : NSManagedObjectContext!;
 
         DispatchQueue.main.syncInMain {
-            moc = RSModelController.Default.context;
+            moc = RSModelController.shared.context;
         }
         
-        return LSFetchedResultsController.init("RSStoredStock", entityType: RSStoredStock.self, sortDescriptors: [NSSortDescriptor.init(key: "name", ascending: true)], moc: moc);
+        return LSFetchedResultsController<RSStoredStock>("RSStoredStock", sortDescriptors: [NSSortDescriptor.init(key: "name", ascending: true)], moc: moc, delegate: self);
     }();
     //Rx Source for UITableView
     //var fetchedResults: BehaviorRelay<[RSStoredStock]>!;
@@ -52,11 +52,11 @@ class RSFavoritesViewController: UITableViewController, NSFetchedResultsControll
 
         //Bind NSFetchedResultsController to UITableView
         self.tableView.dataSource = nil;
-        self.dataSource = self.fetchedResultsController.fetchController.ls.bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, entityType: RSStoredStock.self, cellType: RSSearchCell.self, cellConfigurator: { (indexPath, entity, cell) in
+        self.dataSource = self.fetchedResultsController.ls.bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, entityType: RSStoredStock.self, cellType: RSSearchCell.self, cellConfigurator: { (indexPath, entity, cell) in
             cell.iconImage.image = UIImage(named: "stock.png");
             cell.titleLabel?.text = entity.name;
         });
-        self.fetchedResultsController.fetchController.delegate = self;
+        self.fetchedResultsController.delegate = self;
         
         // Implements with rxCocoa
         /*self.disposeBag = self.fetchedResultsController.fetchController.rx.asRelay(RSStoredStock.self)
@@ -79,7 +79,7 @@ class RSFavoritesViewController: UITableViewController, NSFetchedResultsControll
     }
     
     func refresh(){
-        self.stocks = RSModelController.Default.loadStocks();
+        self.stocks = RSModelController.shared.loadStocks();
 //        self.tableView.reloadData();
         self.tableView.reloadSections(IndexSet.init(integer: 0), with: .automatic);
     }
@@ -111,12 +111,12 @@ class RSFavoritesViewController: UITableViewController, NSFetchedResultsControll
         self.setEditButton();
         self.tableView.setEditing(false, animated: true);
         self.navigationItem.leftBarButtonItem = nil;
-        RSModelController.Default.saveChanges();
+        RSModelController.shared.saveChanges();
     }
     
     @IBAction func onCancelEdit(button : UIBarButtonItem){
-        var needToReload = !RSModelController.Default.isSaved;
-        RSModelController.Default.reset();
+        var needToReload = !RSModelController.shared.isSaved;
+        RSModelController.shared.reset();
         defer{
             self.navigationItem.leftBarButtonItem = nil;
             self.navigationItem.rightBarButtonItem = self.editButton;

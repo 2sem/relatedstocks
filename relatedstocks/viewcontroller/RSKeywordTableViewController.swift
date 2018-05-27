@@ -21,7 +21,7 @@ class RSKeywordTableViewController: UITableViewController {
     
     var modelController : RSModelController {
         get{
-            return RSModelController.Default;
+            return RSModelController.shared;
         }
     }
     
@@ -32,7 +32,7 @@ class RSKeywordTableViewController: UITableViewController {
     
     func updateKeywords(keyword: String){
         // MARK: Finds keyword contains given keyword
-        self.keywords = RSModelController.Default.findKeywords(withName: keyword);
+        self.keywords = RSModelController.shared.findKeywords(withName: keyword);
         self.tableView.reloadData();
     }
 

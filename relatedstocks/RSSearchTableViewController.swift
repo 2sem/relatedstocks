@@ -49,7 +49,7 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     var searchKeywordConroller : RSKeywordTableViewController!;
     var modelController : RSModelController {
         get{
-            return RSModelController.Default;
+            return RSModelController.shared;
         }
     }
     
@@ -57,16 +57,16 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     var keywordView : UIView?;
     var hotKeywordController : RSHotKeywordTableViewController!;
     
+    // MARK: to toggle Favorite Stock Item
     lazy var fetchedResultsController : LSFetchedResultsController<RSStoredStock> = {
         var moc : NSManagedObjectContext!;
         
         DispatchQueue.main.syncInMain {
-            moc = RSModelController.Default.context;
+            moc = RSModelController.shared.context;
         }
         
-        let value = LSFetchedResultsController.init("RSStoredStock", entityType: RSStoredStock.self, sortDescriptors: [NSSortDescriptor.init(key: "name", ascending: true)], moc: moc);
+        let value = LSFetchedResultsController<RSStoredStock>("RSStoredStock", sortDescriptors: [NSSortDescriptor.init(key: "name", ascending: true)], moc: moc);
         value.fetch();
-        
         return value;
     }();
     
@@ -82,7 +82,9 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         self.tableView.delegate = nil;
 
         self.showKeywordView();
-        /*RSStockController.shared.stocksRelay.asObservable().asDriver(onErrorJustReturn: []).map { $0.any ? UITableViewCellSeparatorStyle.singleLine : UITableViewCellSeparatorStyle.none }
+        /*RSStockController.shared.stocksRelay.asObservable()
+         .asDriver(onErrorJustReturn: [])
+         .map { $0.any ? UITableViewCellSeparatorStyle.singleLine : UITableViewCellSeparatorStyle.none }
         .drive(onNext: { (style) in
             self.tableView.separatorStyle = style;
             print("sets new table style[\(style)]");
@@ -91,7 +93,9 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         
         //self.searchBar.rx.text.bind
         RSSearchTableViewController.shared = self;
+        self.fetchedResultsController.delegate = self;
         
+        // Prepare view for the theme autocompletion
         self.refreshControl?.addTarget(self, action: #selector(refresh(refreshControl:)), for: .valueChanged);
         self.searchKeywordConroller = self.storyboard?.instantiateViewController(withIdentifier: "RSKeywordTableViewController") as? RSKeywordTableViewController;
         self.searchKeywordConroller.delegate = self;
@@ -134,8 +138,6 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         }*/
         self.definesPresentationContext = true;
         
-        self.fetchedResultsController.fetchController.delegate = self;
-    
         RSStockController.shared.requestStocks(withKeyword: "")
         .bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, cellType: RSSearchCell.self) { [weak self](row, stock, cell) in
             guard self != nil else{
@@ -144,9 +146,9 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
             
             let indexPath = IndexPath.init(row: row, section: 0);
             cell.iconImage.image = UIImage(named: "stock.png");
-            //cell.titleLabel?.text = self?.searchResults[indexPath.row].name;
             cell.titleLabel?.text = stock.name;
             
+            // sets state of favorite
             cell.checkButton.addTarget(self!, action: #selector(self!.onCheckFav(button:)), for: .touchUpInside);
             
             let isFav = self!.modelController.isExistStocks(withName: stock.name) ? true : false;
@@ -172,13 +174,6 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //self.searchBar.becomeFirstResponder();
-        //self.searchBar.becomeFirstResponder();
-        /*DispatchQueue.main.async { [weak self] in
-            self?.searchController.isActive = true;
-            self?.searchBar.becomeFirstResponder();
-        }*/
-        
         if !RSSearchTableViewController.startingKeyword.isEmpty{
             self.search(withKeyword: RSSearchTableViewController.startingKeyword);
         }
@@ -201,7 +196,6 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     }
 
     @objc func refresh(refreshControl : UIRefreshControl){
-        //self.search(withKeyword: self.searchBar.text ?? "");
         refreshControl.endRefreshing();
     }
     
@@ -424,9 +418,9 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.search(withKeyword: self.searchBar.text ?? "");
-        if !RSModelController.Default.isExistKeywords(withName: self.searchBar.text ?? ""){
-            RSModelController.Default.createKeyword(name: self.searchBar.text ?? "");
-            RSModelController.Default.saveChanges();
+        if !RSModelController.shared.isExistKeywords(withName: self.searchBar.text ?? ""){
+            RSModelController.shared.createKeyword(name: self.searchBar.text ?? "");
+            RSModelController.shared.saveChanges();
         }
      
         searchBar.resignFirstResponder();
@@ -453,16 +447,19 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
     
     // MARK: NSFetchedResultsControllerDelegate
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard let stock = anObject as? RSStoredStock else{
+            return;
+        }
+        
+        let searchCell = (self.tableView.visibleCells as? [RSSearchCell] ?? []).first { (cell) -> Bool in
+            cell.titleLabel.text == stock.name
+        };
+        
         switch type{
+            case .insert:
+                searchCell?.checkButton.isSelected = true;
+                break;
             case .delete:
-                guard let stock = anObject as? RSStoredStock else{
-                    return;
-                }
-                
-                let searchCell = (self.tableView.visibleCells as? [RSSearchCell] ?? []).first { (cell) -> Bool in
-                    cell.titleLabel.text == stock.name
-                };
-                
                 searchCell?.checkButton.isSelected = false;
                 break;
             default:
@@ -482,6 +479,7 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
             }
             
             internetView.company = company;
+            internetView.hidesBottomBarWhenPushed = true;
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

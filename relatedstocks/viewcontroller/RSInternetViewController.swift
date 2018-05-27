@@ -10,6 +10,7 @@ import UIKit
 import ProgressWebViewController
 import KakaoLink
 import KakaoMessageTemplate
+import CoreData
 
 class RSInternetViewController: ProgressWebViewController {
     
@@ -19,6 +20,11 @@ class RSInternetViewController: ProgressWebViewController {
         return URL(string: "http://search.naver.com/search.naver?ie=utf8&query=\(self.company.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "")")!;
     }
     @objc var startingUrl : String = "";
+    var favorOnButton : UIBarButtonItem!;
+    var favorOffButton : UIBarButtonItem!;
+    var modelController : RSModelController{
+        return RSModelController.shared;
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
@@ -34,8 +40,19 @@ class RSInternetViewController: ProgressWebViewController {
         //self.url = DASponsor.Urls.historyUrl;
         //self.load(DASponsor.Urls.historyUrl);
         
+        
+        
+        //if there is not starting url
         if self.startingUrl.isEmpty{
+            self.favorOnButton = UIBarButtonItem.init(image: UIImage.init(named: "love_off.png"), style: .plain, target: self, action: #selector(self.onFavor(button:)));
+            self.favorOffButton = UIBarButtonItem.init(image: UIImage.init(named: "love_on.png"), style: .plain, target: self, action: #selector(self.offFavor(button:)));
+            //load naver page
             self.navigationItem.title = self.company;
+            if let _ = self.modelController.findStocks(withName: self.company).first{
+                self.navigationItem.rightBarButtonItem = self.favorOffButton;
+            }else{
+                self.navigationItem.rightBarButtonItem = self.favorOnButton;
+            }
             self.load(self.naverUrlForCompany);
         }else{
             self.navigationItem.rightBarButtonItems = [];
@@ -53,6 +70,20 @@ class RSInternetViewController: ProgressWebViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @objc func onFavor(button: UIBarButtonItem){
+        self.modelController.createStock(name: self.company, keyword: "");
+        self.modelController.saveChanges();
+        self.navigationItem.rightBarButtonItem = self.favorOffButton;
+    }
+    
+    @objc func offFavor(button: UIBarButtonItem){
+        if let stock = self.modelController.findStocks(withName: self.company).first{
+            self.modelController.removeStock(stock: stock);
+            self.modelController.saveChanges();
+            self.navigationItem.rightBarButtonItem = self.favorOnButton;
+        }
+    }
+    
     @IBAction func onShare(_ sender: UIBarButtonItem) {
         DispatchQueue.main.syncInMain {
             self.shareByKakao();
@@ -68,6 +99,8 @@ class RSInternetViewController: ProgressWebViewController {
                     UIAlertAction(title: "취소", style: .cancel, handler: nil)]
         self.showAlert(title: "주식 공유", msg: "친구들에게 '\(self.title ?? "")'을(를) 공유하거나 관련주식검색기를 추천하세요", actions: acts, style: .alert);*/
     }
+    
+    
     
     func shareByKakao(){
         let kakaoLink = KMTLinkObject();

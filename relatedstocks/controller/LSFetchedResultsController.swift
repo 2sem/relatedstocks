@@ -9,59 +9,59 @@
 import Foundation
 import CoreData
 
-class LSFetchedResultsController<Entity> : NSObject where Entity : NSManagedObject{
+class LSFetchedResultsController<Entity> : NSFetchedResultsController<NSFetchRequestResult> where Entity : NSFetchRequestResult{
     //let entityName : String;
-    let fetchController : NSFetchedResultsController<NSFetchRequestResult>!;
+    //let fetchController : NSFetchedResultsController<NSFetchRequestResult>!;
     var predicate: NSPredicate?{
         get{
-            return self.fetchController.fetchRequest.predicate;
+            return self.fetchRequest.predicate;
         }
         set(value){
-            self.fetchController.fetchRequest.predicate = value;
+            self.fetchRequest.predicate = value;
         }
     }
     
-    init(_ entityName: String, entityType: Entity.Type, sortDescriptors: [NSSortDescriptor], moc : NSManagedObjectContext, delegate: NSFetchedResultsControllerDelegate? = nil) {
+    init(_ entityName: String, sortDescriptors: [NSSortDescriptor], moc : NSManagedObjectContext, delegate: NSFetchedResultsControllerDelegate? = nil) {
         //self.entityName = entityName;
         
-        let request = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName);
+        let request = NSFetchRequest<Entity>.init(entityName: entityName);
         request.sortDescriptors = sortDescriptors;
         
-        self.fetchController = NSFetchedResultsController<NSFetchRequestResult>(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil);
-        self.fetchController.delegate = delegate;
-        super.init();
+        //self.fetchController = NSFetchedResultsController<NSFetchRequestResult>(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil);
+        super.init(fetchRequest: request as! NSFetchRequest<NSFetchRequestResult>, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil);
+        self.delegate = delegate;
         
         self.fetch();
     }
     
     func fetch(){
         do{
-            try self.fetchController?.performFetch();
+            try self.performFetch();
         }catch let error{
             assertionFailure("Can not create fetcher for favorites. error[\(error.localizedDescription)]");
         }
     }
     
     func fetch(forSection section: Int, forIndex index: Int) -> Entity?{
-        return self.fetchController.object(at: IndexPath.init(row: index, section: section)) as? Entity;
+        return self.object(at: IndexPath.init(row: index, section: section)) as? Entity;
     }
     
     var fetchedGroupCount : Int{
-        return self.fetchController.sections?.count ?? 0;
+        return self.sections?.count ?? 0;
     }
     
     func fetchedCount(forGroup group: Int) -> Int{
-        return self.fetchController.sections?[group].numberOfObjects ?? 0;
+        return self.sections?[group].numberOfObjects ?? 0;
     }
     
     func removeEntity(_ entity: Entity){
-        self.fetchController.managedObjectContext.delete(entity);
+        self.managedObjectContext.delete(entity as! NSManagedObject);
         self.saveChanges();
     }
     
     func saveChanges(){
-        let ctx = self.fetchController?.managedObjectContext;
-        self.fetchController?.managedObjectContext.performAndWait { [weak ctx] in
+        let ctx = self.managedObjectContext;
+        self.managedObjectContext.performAndWait { [weak ctx] in
             do{
                 try ctx?.save();
                 print("Saving favorite fetcher has been completed");

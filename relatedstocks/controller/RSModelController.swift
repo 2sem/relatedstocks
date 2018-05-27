@@ -18,7 +18,7 @@ class RSModelController : NSObject{
     internal static let dispatchGroupForInit = DispatchGroup();
 //    var SingletonQ = DispatchQueue(label: "RSModelController.Default");
     private static var _instance = RSModelController();
-    static var Default : RSModelController{
+    static var shared : RSModelController{
         get{
             print("enter RSModelController instance - \(self) - \(Thread.current)");
             let value = _instance;

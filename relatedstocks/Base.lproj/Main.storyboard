@@ -173,7 +173,7 @@
             </objects>
             <point key="canvasLocation" x="-418" y="1394"/>
         </scene>
-        <!--관련주식검색-->
+        <!--관련주검색-->
         <scene sceneID="H7g-uT-0Da">
             <objects>
                 <tableViewController id="uXc-Mf-Pwp" customClass="RSSearchTableViewController" customModule="relatedstocks" customModuleProvider="target" sceneMemberID="viewController">
@@ -245,7 +245,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Search" id="JcM-yl-nbH"/>
-                    <navigationItem key="navigationItem" title="관련주식검색" id="IKW-rz-WfG">
+                    <navigationItem key="navigationItem" title="관련주검색" id="IKW-rz-WfG">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="HaE-om-bC8">
                             <connections>
                                 <action selector="onReview:" destination="uXc-Mf-Pwp" id="iza-Rc-4ZA"/>
