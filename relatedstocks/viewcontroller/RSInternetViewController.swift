@@ -15,6 +15,8 @@ import CoreData
 class RSInternetViewController: ProgressWebViewController {
     
     @objc var company : String = "";
+    var keyword : String = "";
+    
     var originalRightButtons : [UIBarButtonItem] = [];
     var naverUrlForCompany : URL{
         return URL(string: "http://search.naver.com/search.naver?ie=utf8&query=\(self.company.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? "")")!;
@@ -22,6 +24,8 @@ class RSInternetViewController: ProgressWebViewController {
     @objc var startingUrl : String = "";
     var favorOnButton : UIBarButtonItem!;
     var favorOffButton : UIBarButtonItem!;
+    var shareButton : UIBarButtonItem!;
+    
     var modelController : RSModelController{
         return RSModelController.shared;
     }
@@ -40,19 +44,15 @@ class RSInternetViewController: ProgressWebViewController {
         //self.url = DASponsor.Urls.historyUrl;
         //self.load(DASponsor.Urls.historyUrl);
         
-        
-        
         //if there is not starting url
         if self.startingUrl.isEmpty{
             self.favorOnButton = UIBarButtonItem.init(image: UIImage.init(named: "love_off.png"), style: .plain, target: self, action: #selector(self.onFavor(button:)));
             self.favorOffButton = UIBarButtonItem.init(image: UIImage.init(named: "love_on.png"), style: .plain, target: self, action: #selector(self.offFavor(button:)));
+            self.shareButton = UIBarButtonItem.init(barButtonSystemItem: .action, target: self, action: #selector(self.onShare(_:)));
             //load naver page
             self.navigationItem.title = self.company;
-            if let _ = self.modelController.findStocks(withName: self.company).first{
-                self.navigationItem.rightBarButtonItem = self.favorOffButton;
-            }else{
-                self.navigationItem.rightBarButtonItem = self.favorOnButton;
-            }
+            self.updateRightbuttons();
+            
             self.load(self.naverUrlForCompany);
         }else{
             self.navigationItem.rightBarButtonItems = [];
@@ -70,8 +70,23 @@ class RSInternetViewController: ProgressWebViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func updateRightbuttons(){
+        var buttons : [UIBarButtonItem] = [];
+        
+        buttons.append(self.shareButton);
+        if self.company != "특징주"{
+            if let _ = self.modelController.findStocks(withName: self.company).first{
+                buttons.append(self.favorOffButton);
+            }else{
+                buttons.append(self.favorOnButton);
+            }
+        }
+        
+        self.navigationItem.rightBarButtonItems = buttons;
+    }
+    
     @objc func onFavor(button: UIBarButtonItem){
-        self.modelController.createStock(name: self.company, keyword: "");
+        self.modelController.createStock(name: self.company, keyword: self.keyword);
         self.modelController.saveChanges();
         self.navigationItem.rightBarButtonItem = self.favorOffButton;
     }
@@ -84,7 +99,7 @@ class RSInternetViewController: ProgressWebViewController {
         }
     }
     
-    @IBAction func onShare(_ sender: UIBarButtonItem) {
+    @objc func onShare(_ sender: UIBarButtonItem) {
         DispatchQueue.main.syncInMain {
             self.shareByKakao();
         }
@@ -100,8 +115,6 @@ class RSInternetViewController: ProgressWebViewController {
         self.showAlert(title: "주식 공유", msg: "친구들에게 '\(self.title ?? "")'을(를) 공유하거나 관련주식검색기를 추천하세요", actions: acts, style: .alert);*/
     }
     
-    
-    
     func shareByKakao(){
         let kakaoLink = KMTLinkObject();
         kakaoLink.webURL = self.url;
@@ -113,7 +126,12 @@ class RSInternetViewController: ProgressWebViewController {
         let kakaoContent = KMTContentObject(title: "추천 종목", imageURL: URL.init(string: "http://andy3938.cafe24.com/stockseeker_512.png")!, link: kakaoLink);
         kakaoContent.imageWidth = 120;
         kakaoContent.imageHeight = 120;
-        kakaoContent.desc = self.company;
+        
+        if self.keyword.any{
+            kakaoContent.desc = "\(self.company) - \(self.keyword) 테마주";
+        }else{
+            kakaoContent.desc = self.company;
+        }
         
         let kakaoTemplate = KMTFeedTemplate.init(builderBlock: { (kakaoBuilder) in
             kakaoBuilder.content = kakaoContent;

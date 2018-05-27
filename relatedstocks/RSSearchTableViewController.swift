@@ -479,6 +479,7 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
             }
             
             internetView.company = company;
+            internetView.keyword = self.searchBar.text ?? "";
             internetView.hidesBottomBarWhenPushed = true;
         }
         // Get the new view controller using segue.destinationViewController.
