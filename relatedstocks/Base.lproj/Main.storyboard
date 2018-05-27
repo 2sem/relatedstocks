@@ -302,44 +302,51 @@
         <scene sceneID="ZGP-a6-auK">
             <objects>
                 <tableViewController title="Favoriates" id="gek-X5-K6C" customClass="RSFavoritesViewController" customModule="relatedstocks" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3cm-hE-vvy">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="104" sectionHeaderHeight="28" sectionFooterHeight="28" id="3cm-hE-vvy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RSSearchCell" id="WYV-rm-grf" customClass="RSSearchCell" customModule="relatedstocks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RSSearchCell" rowHeight="88" id="WYV-rm-grf" customClass="RSSearchCell" customModule="relatedstocks" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WYV-rm-grf" id="Rf5-Y6-kFv">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stock.png" translatesAutoresizingMaskIntoConstraints="NO" id="omP-d2-2Go" userLabel="Icon Image">
-                                            <rect key="frame" x="8" y="8" width="32" height="32"/>
+                                            <rect key="frame" x="8" y="21.5" width="44.5" height="44.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="omP-d2-2Go" secondAttribute="height" multiplier="1:1" id="OXm-kd-y7B"/>
+                                                <constraint firstAttribute="height" constant="44" id="Phi-qE-3L9"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN0-m1-jCP" userLabel="Title Label">
-                                            <rect key="frame" x="50" y="8" width="48" height="32"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN0-m1-jCP" userLabel="Title Label">
+                                            <rect key="frame" x="62.5" y="8" width="64.5" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="keyword dddd" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXZ-A5-Zua">
+                                            <rect key="frame" x="62.5" y="33" width="64.5" height="41"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="omP-d2-2Go" firstAttribute="bottom" secondItem="Rf5-Y6-kFv" secondAttribute="bottom" constant="-4" id="1Lf-zD-lvf"/>
-                                        <constraint firstItem="omP-d2-2Go" firstAttribute="top" secondItem="Rf5-Y6-kFv" secondAttribute="top" constant="8" id="EFl-ID-Vh7"/>
+                                        <constraint firstItem="GXZ-A5-Zua" firstAttribute="trailing" secondItem="LN0-m1-jCP" secondAttribute="trailing" id="8E9-6P-FtW"/>
+                                        <constraint firstItem="omP-d2-2Go" firstAttribute="centerY" secondItem="Rf5-Y6-kFv" secondAttribute="centerY" id="DBk-J5-Bgl"/>
                                         <constraint firstItem="omP-d2-2Go" firstAttribute="leading" secondItem="Rf5-Y6-kFv" secondAttribute="leading" constant="8" id="LY4-Hk-1Fk"/>
+                                        <constraint firstItem="GXZ-A5-Zua" firstAttribute="leading" secondItem="LN0-m1-jCP" secondAttribute="leading" id="TMo-KQ-cXd"/>
                                         <constraint firstItem="LN0-m1-jCP" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Rf5-Y6-kFv" secondAttribute="trailing" id="aSz-2F-i9O"/>
                                         <constraint firstItem="LN0-m1-jCP" firstAttribute="leading" secondItem="omP-d2-2Go" secondAttribute="trailing" constant="10" id="cSn-UN-DqN"/>
-                                        <constraint firstItem="LN0-m1-jCP" firstAttribute="top" secondItem="omP-d2-2Go" secondAttribute="top" id="iUg-2z-Mm6"/>
-                                        <constraint firstItem="LN0-m1-jCP" firstAttribute="bottom" secondItem="omP-d2-2Go" secondAttribute="bottom" id="th9-nJ-eXv"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="iconImage" destination="omP-d2-2Go" id="aOB-2U-pvz"/>
+                                    <outlet property="keywordLabel" destination="GXZ-A5-Zua" id="EEG-vp-DE6"/>
                                     <outlet property="titleLabel" destination="LN0-m1-jCP" id="hlD-E1-m1O"/>
                                     <segue destination="6de-uR-KG6" kind="show" id="MmK-Rs-KOX"/>
                                 </connections>

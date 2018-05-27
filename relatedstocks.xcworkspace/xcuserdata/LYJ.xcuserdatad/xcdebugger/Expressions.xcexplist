@@ -63,6 +63,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RSSearchCell.updateLayouts():RSSearchCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.titleKeywordConstraints.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "RSSearchTableViewController.onCheckFav(button : UIButton) -&gt; ():RSSearchTableViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -74,10 +82,10 @@
          contextName = "AppDelegate.performPushCommand(_:body:category:item:):AppDelegate.swift">
          <PersistentStrings>
             <PersistentString
-               value = "&quot;\(category)&quot;">
+               value = "category.rawValue">
             </PersistentString>
             <PersistentString
-               value = "category.rawValue">
+               value = "&quot;\(category)&quot;">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

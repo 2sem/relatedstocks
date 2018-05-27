@@ -18,6 +18,7 @@ class LSFetchedResultsController<Entity> : NSFetchedResultsController<NSFetchReq
         }
         set(value){
             self.fetchRequest.predicate = value;
+            self.fetch();
         }
     }
     
