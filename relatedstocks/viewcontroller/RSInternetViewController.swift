@@ -88,14 +88,14 @@ class RSInternetViewController: ProgressWebViewController {
     @objc func onFavor(button: UIBarButtonItem){
         self.modelController.createStock(name: self.company, keyword: self.keyword);
         self.modelController.saveChanges();
-        self.navigationItem.rightBarButtonItem = self.favorOffButton;
+        self.updateRightbuttons();
     }
     
     @objc func offFavor(button: UIBarButtonItem){
         if let stock = self.modelController.findStocks(withName: self.company).first{
             self.modelController.removeStock(stock: stock);
             self.modelController.saveChanges();
-            self.navigationItem.rightBarButtonItem = self.favorOnButton;
+            self.updateRightbuttons();
         }
     }
     
@@ -118,7 +118,8 @@ class RSInternetViewController: ProgressWebViewController {
     func shareByKakao(){
         let kakaoLink = KMTLinkObject();
         kakaoLink.webURL = self.url;
-        kakaoLink.iosExecutionParams = "category=company&item=\(self.company)";
+        kakaoLink.iosExecutionParams = "category=naver&item=\(self.company)"
+            + (self.keyword.any ? "&keyword=\(self.keyword)" : "")
         kakaoLink.iosExecutionParams = kakaoLink.iosExecutionParams!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed);
         kakaoLink.androidExecutionParams = kakaoLink.iosExecutionParams;
         

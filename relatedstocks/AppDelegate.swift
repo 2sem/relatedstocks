@@ -170,21 +170,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
     
     func openKakaoUrl(_ url : URL){
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true);
-        var queryCategory = urlComponents?.queryItems?.first(where: { (query) -> Bool in
-            return query.name == "category";
-        })
-        var queryItem = urlComponents?.queryItems?.first(where: { (query) -> Bool in
-            return query.name == "item";
-        })
-        let category = queryCategory?.value ?? "";
-        let item = queryItem?.value ?? "";
+        var params : [String : String] = urlComponents?.queryItems?
+            .reduce(into: [String : String]()){ $0[$1.name] = $1.value ?? "" } ?? [:]
+        let category = params["category"] ?? "";
+        let item = params["item"] ?? "";
+        let keyword = params["keyword"] ?? "";
         
         guard !item.isEmpty else{
             return;
         }
         
         print("open by kakao. catgory[\(category) item[\(item)]]");
-        RSSearchTableViewController.startingKeyword = item;
+        RSTabbarController.startingIndex = 0;
+        RSTabbarController.openNaver(withItem: item, withKeyword: keyword);
     }
     
     // MARK: UNUserNotificationCenterDelegate

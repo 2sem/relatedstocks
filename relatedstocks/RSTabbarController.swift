@@ -32,6 +32,17 @@ class RSTabbarController: UITabBarController {
         }
     }
     
+    static var startingItem : String!;
+    static var startingKeyword : String!;
+    /**
+         Open Portal by Kakao-Link
+     */
+    static func openNaver(withItem item: String, withKeyword keyword: String){
+        self.startingItem = item;
+        self.startingKeyword = keyword;
+        RSTabbarController.shared?.loadItem(item, keyword: keyword);
+    }
+    
     var oldIndex : Int = 0;
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +79,8 @@ class RSTabbarController: UITabBarController {
         
         if RSTabbarController.startingUrl != nil{
             self.loadUrl(RSTabbarController.startingUrl);
+        }else if let item = RSTabbarController.startingItem{
+            RSTabbarController.shared?.loadItem(item, keyword: RSTabbarController.startingKeyword ?? "");
         }
     }
     
@@ -77,6 +90,20 @@ class RSTabbarController: UITabBarController {
         // MARK: Open web url with webView
         if let internetView = self.storyboard?.instantiateViewController(withIdentifier: "RSInternetViewController") as? RSInternetViewController{
             internetView.startingUrl = url.absoluteString;
+            (RSTabbarController.shared.selectedViewController as? UINavigationController)?.pushViewController(internetView, animated: true);
+        }else{
+            print("could not create internetView]");
+        }
+    }
+    
+    func loadItem(_ item : String, keyword: String){
+        print("try open naver[\(item) with internetView]");
+        
+        // MARK: Open web url with webView
+        if let internetView = self.storyboard?.instantiateViewController(withIdentifier: "RSInternetViewController") as? RSInternetViewController{
+            internetView.company = item;
+            internetView.keyword = keyword;
+            internetView.hidesBottomBarWhenPushed = true;
             (RSTabbarController.shared.selectedViewController as? UINavigationController)?.pushViewController(internetView, animated: true);
         }else{
             print("could not create internetView]");
