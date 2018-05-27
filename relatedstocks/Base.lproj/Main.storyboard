@@ -421,7 +421,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D90-id-KGu">
-                                <rect key="frame" x="60" y="132" width="255" height="447"/>
+                                <rect key="frame" x="60" y="132" width="255" height="535"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="vcE-Uk-WQY" id="Wac-dz-jyR"/>
@@ -431,7 +431,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="0S0-O9-tQx" firstAttribute="top" secondItem="NeO-ja-ARp" secondAttribute="bottom" constant="88" id="FP2-8v-C0R"/>
-                            <constraint firstItem="D90-id-KGu" firstAttribute="bottom" secondItem="lcP-Ml-oEb" secondAttribute="top" constant="-88" id="Mmj-6D-3Dm"/>
+                            <constraint firstItem="D90-id-KGu" firstAttribute="bottom" secondItem="lcP-Ml-oEb" secondAttribute="top" id="Mmj-6D-3Dm"/>
                             <constraint firstItem="0S0-O9-tQx" firstAttribute="trailing" secondItem="D90-id-KGu" secondAttribute="trailing" id="TyF-uN-fv0"/>
                             <constraint firstItem="D90-id-KGu" firstAttribute="leading" secondItem="zyN-2v-jKq" secondAttribute="leadingMargin" constant="44" id="ZpE-2b-pEf"/>
                             <constraint firstItem="0S0-O9-tQx" firstAttribute="leading" secondItem="D90-id-KGu" secondAttribute="leading" id="dY7-PL-udS"/>
