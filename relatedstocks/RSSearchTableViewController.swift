@@ -148,6 +148,7 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
             let indexPath = IndexPath.init(row: row, section: 0);
             cell.iconImage.image = UIImage(named: "stock.png");
             cell.titleLabel?.text = stock.name;
+            cell.showNewIndicator = Date().timeIntervalSince(stock.lastModified) < 60 * 60 * 24 * 3;
             
             // sets state of favorite
             cell.checkButton.addTarget(self!, action: #selector(self!.onCheckFav(button:)), for: .touchUpInside);

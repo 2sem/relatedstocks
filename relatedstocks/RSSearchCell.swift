@@ -12,6 +12,7 @@ class RSSearchCell: UITableViewCell {
 
     
     @IBOutlet weak var iconImage: UIImageView!
+    @IBOutlet weak var newIconImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var keywordLabel : UILabel!
@@ -21,6 +22,21 @@ class RSSearchCell: UITableViewCell {
     var onlyTitleConstraints : [NSLayoutConstraint] = [];
     var titleKeywordConstraints : [NSLayoutConstraint] = [];
     
+    private var newAnimator : UIViewPropertyAnimator!;
+    var showNewIndicator : Bool = false{
+        didSet{
+            if self.showNewIndicator{
+                self.newIconImage.isHidden = false;
+                self.newAnimator.startAnimation();
+                //self.newIconImage
+            }else{
+                //self.newAnimator.stopAnimation(false);
+            }
+        }
+        //start animation
+        //hide
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -29,6 +45,17 @@ class RSSearchCell: UITableViewCell {
         }
         self.checkButton.setBackgroundImage(nil, for: .selected);
         self.setupLayouts();
+        self.newIconImage.alpha = 0.0;
+        
+        self.newAnimator = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 1.0, delay: 0.0, options: [.curveEaseIn,.repeat], animations: { [weak self] in
+            UIView.setAnimationRepeatCount(3);
+            UIView.setAnimationRepeatAutoreverses(true);
+            self?.newIconImage.alpha = 1.0;
+        }) { [weak self](position) in
+            self?.newIconImage.alpha = 1.0;
+        }
+        self.newAnimator.pauseAnimation();
+        //self.newAnimator.isReversed = true;
         // Initialization code
     }
 

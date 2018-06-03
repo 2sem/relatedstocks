@@ -151,15 +151,13 @@ class RSStockController: NSObject {
                 
                 var list : [RSStockItem] = [];
                 for i in 1...RSStockController.MaxListCount{
-                    let name = "company\(i)";
-                    guard let company = json[name] else{
+                    var name = "company\(i)";
+                    let stock = RSStockItem.init(json, index: i);
+                    guard stock.name.any else{
                         continue;
                     }
                     
-                    if company.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false{
-                        list.append(RSStockItem.init(company));
-                        print("\(name) > \(company)");
-                    }
+                    list.append(stock);
                 }
                 observer.onNext(list);
                 observer.onCompleted();

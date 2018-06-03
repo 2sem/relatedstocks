@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="loY-W2-p4x">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="loY-W2-p4x">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -196,6 +197,21 @@
                                                 <constraint firstAttribute="width" secondItem="o32-DL-0by" secondAttribute="height" multiplier="1:1" id="ndf-km-R0t"/>
                                             </constraints>
                                         </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new" translatesAutoresizingMaskIntoConstraints="NO" id="Jfz-xO-QzQ">
+                                            <rect key="frame" x="8" y="8" width="22" height="22"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="Jfz-xO-QzQ" secondAttribute="height" multiplier="1:1" id="kt5-Qe-6XX"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="11"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.transform.rotation.z">
+                                                    <real key="value" value="-0.40000000000000002"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO2-JX-lXO" userLabel="Title Label">
                                             <rect key="frame" x="62" y="8" width="253" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -221,8 +237,11 @@
                                     <constraints>
                                         <constraint firstItem="gO2-JX-lXO" firstAttribute="top" secondItem="o32-DL-0by" secondAttribute="top" id="1ge-25-3oa"/>
                                         <constraint firstItem="o32-DL-0by" firstAttribute="bottom" secondItem="Egn-47-aTZ" secondAttribute="bottom" constant="-4" id="2oZ-V1-QTH"/>
+                                        <constraint firstItem="Jfz-xO-QzQ" firstAttribute="top" secondItem="o32-DL-0by" secondAttribute="top" id="5Hs-CL-wVp"/>
+                                        <constraint firstItem="Jfz-xO-QzQ" firstAttribute="leading" secondItem="o32-DL-0by" secondAttribute="leading" id="9yb-FC-wgT"/>
                                         <constraint firstItem="o32-DL-0by" firstAttribute="top" secondItem="Egn-47-aTZ" secondAttribute="top" constant="8" id="Fnz-Xi-RlY"/>
                                         <constraint firstItem="gO2-JX-lXO" firstAttribute="trailing" secondItem="nM0-hO-xhf" secondAttribute="leading" id="O0h-ZP-Aia"/>
+                                        <constraint firstItem="Jfz-xO-QzQ" firstAttribute="height" secondItem="o32-DL-0by" secondAttribute="height" multiplier="0.5" id="dV6-qf-LXD"/>
                                         <constraint firstItem="nM0-hO-xhf" firstAttribute="trailing" secondItem="Egn-47-aTZ" secondAttribute="trailingMargin" id="ghj-LU-Lg3"/>
                                         <constraint firstItem="o32-DL-0by" firstAttribute="leading" secondItem="Egn-47-aTZ" secondAttribute="leading" constant="8" id="hpk-Ih-v5o"/>
                                         <constraint firstItem="nM0-hO-xhf" firstAttribute="top" secondItem="o32-DL-0by" secondAttribute="top" id="ksQ-aA-Fhi"/>
@@ -234,6 +253,7 @@
                                 <connections>
                                     <outlet property="checkButton" destination="nM0-hO-xhf" id="DO4-eT-ZWI"/>
                                     <outlet property="iconImage" destination="o32-DL-0by" id="r0g-Bq-aln"/>
+                                    <outlet property="newIconImage" destination="Jfz-xO-QzQ" id="nXh-GB-91E"/>
                                     <outlet property="titleLabel" destination="gO2-JX-lXO" id="b7P-QZ-R0Q"/>
                                     <segue destination="Ogb-9D-oog" kind="show" id="4HX-dT-Lmm"/>
                                 </connections>
@@ -279,7 +299,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1654" y="-691"/>
+            <point key="canvasLocation" x="1653.5999999999999" y="-691.304347826087"/>
         </scene>
         <!--나의관심주-->
         <scene sceneID="Wej-13-n7O">
@@ -733,6 +753,7 @@
     <resources>
         <image name="love_off.png" width="25" height="25"/>
         <image name="love_on.png" width="25" height="25"/>
+        <image name="new" width="26" height="26"/>
         <image name="notification.png" width="25" height="25"/>
         <image name="review_white_line@x1.5.png" width="32" height="32"/>
         <image name="share.png" width="25" height="25"/>
