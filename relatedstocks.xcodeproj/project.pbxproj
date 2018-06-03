@@ -45,6 +45,7 @@
 		2C1D44A31F4F00DF00617FA6 /* UIApplication+KakaoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1D44A21F4F00DF00617FA6 /* UIApplication+KakaoLink.swift */; };
 		2C20420E20932D2E00132E57 /* NSFetchedResultsController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20420D20932D2E00132E57 /* NSFetchedResultsController+UITableView.swift */; };
 		2C204210209332AE00132E57 /* LSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20420F209332AE00132E57 /* LSFetchedResultsController.swift */; };
+		2C283E3920C3CEDB008CF862 /* URLError.Code+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C283E3820C3CEDB008CF862 /* URLError.Code+.swift */; };
 		2C51FE4C1E24CEDD00D90F8F /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C51FE4B1E24CEDD00D90F8F /* refresh.png */; };
 		2C51FE4E1E24CF0500D90F8F /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C51FE4D1E24CF0500D90F8F /* back.png */; };
 		2C51FE501E24CF3200D90F8F /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C51FE4F1E24CF3200D90F8F /* forward.png */; };
@@ -133,6 +134,7 @@
 		2C20420D20932D2E00132E57 /* NSFetchedResultsController+UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+UITableView.swift"; sourceTree = "<group>"; };
 		2C20420F209332AE00132E57 /* LSFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSFetchedResultsController.swift; sourceTree = "<group>"; };
 		2C2042142093614A00132E57 /* NSFetchedResultsController+Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFetchedResultsController+Observable.swift"; sourceTree = "<group>"; };
+		2C283E3820C3CEDB008CF862 /* URLError.Code+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLError.Code+.swift"; sourceTree = "<group>"; };
 		2C51FE481E24CBAD00D90F8F /* UIApplication+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		2C51FE4B1E24CEDD00D90F8F /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		2C51FE4D1E24CF0500D90F8F /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				2C0F85531F5010D600CEA691 /* GADRewardManager.swift */,
 				2C1D44A01F4EFE3900617FA6 /* ReviewManager.swift */,
 				2C1D44A21F4F00DF00617FA6 /* UIApplication+KakaoLink.swift */,
+				2C283E3820C3CEDB008CF862 /* URLError.Code+.swift */,
 			);
 			path = leesam;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				2C0F6AFD1E03E21000F3A78A /* RSTabbarController.swift in Sources */,
 				2C1A87FD2026BF4E00051A1F /* RSPushData.swift in Sources */,
 				2CEDD9111E52E5EF00F040B0 /* RSHotKeywordTableViewController.swift in Sources */,
+				2C283E3920C3CEDB008CF862 /* URLError.Code+.swift in Sources */,
 				2C020AE51E04E493002B009E /* RSStockItem.swift in Sources */,
 				2CFF5AAE1E38E1BE001D4410 /* UIButton+.swift in Sources */,
 				2C0F6AFA1E03DA0900F3A78A /* GADBannerView+.swift in Sources */,

@@ -225,9 +225,17 @@ class RSFavoritesViewController: UITableViewController, NSFetchedResultsControll
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let internetView = segue.destination as? RSInternetViewController{
-            let cell = self.tableView.cellForRow(at: self.tableView.indexPathForSelectedRow!) as? RSSearchCell;
-            let company = cell?.titleLabel?.text;
-            internetView.company = company!;
+            let selected : IndexPath = self.tableView.indexPathForSelectedRow!;
+            //let cell = self.tableView.cellForRow(at: selectedRow) as? RSSearchCell;
+            //let company = cell?.titleLabel?.text;
+            guard let stock = self.fetchedResultsController.fetch(forSection: 0, forIndex: selected.row) else{
+                return;
+            }
+            
+            internetView.company = stock.name ?? "";
+            if let keyword = stock.keyword {
+                internetView.keyword = keyword ?? "";
+            }
         }
     }
 }

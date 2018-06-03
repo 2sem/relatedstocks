@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
     var fullAd : GADInterstialManager?;
     var rewardAd : GADRewardManager?;
     var reviewManager : ReviewManager?;
+    var deviceToken : String?;
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -118,11 +119,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ReviewManagerDelegate, UN
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let device = deviceToken.hexString;
+        self.deviceToken = deviceToken.hexString;
             //.reduce("", {$0 + String(format: "%02X", $1)});
-        print("APNs device[\(device)] => \(RSStockController.PushRegURL.absoluteString)");
+        print("APNs device[\(self.deviceToken ?? "")] => \(RSStockController.PushRegURL.absoluteString)");
         
-        let params = ["type":"ios","device":device];
+        let params = ["type":"ios","device":self.deviceToken ?? ""];
         Alamofire.request(RSStockController.PushRegURL, method: .post, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { (res) in
                 guard res.error == nil else{

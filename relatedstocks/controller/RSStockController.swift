@@ -88,7 +88,7 @@ class RSStockController: NSObject {
                 print("stock server => response[\(res.response?.statusCode.description ?? "")]");
                 
                 guard let json = res.value as? [String : String] else{
-                    observer.onError(URLError.notConnectedToInternet as! Error);
+                    observer.onError(URLError.notConnectedToInternet.error);
                     observer.onCompleted();
                     return;
                 }
@@ -142,9 +142,9 @@ class RSStockController: NSObject {
             let task = Alamofire.request(RSStockController.StockListURL, method: .post, parameters: params).responseJSON(options: .allowFragments) { (res) in
                 UIApplication.offNetworking();
                 print("stock server => response[\(res.response?.statusCode.description ?? "")]");
-                
+                print("response => %s", res.value.debugDescription);
                 guard let json = res.value as? [String : String] else{
-                    observer.onError(URLError.notConnectedToInternet as! Error);
+                    observer.onError(URLError.notConnectedToInternet.error);
                     observer.onCompleted();
                     return;
                 }
