@@ -37,6 +37,7 @@
 		2C128982208742DA00F9C41F /* notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C128981208742DA00F9C41F /* notification.png */; };
 		2C13B8CF20946D530089B653 /* NSFetchedResultsController+Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2042142093614A00132E57 /* NSFetchedResultsController+Observable.swift */; };
 		2C13B8D220946DE70089B653 /* ObservableType+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13B8D120946DE70089B653 /* ObservableType+UITableView.swift */; };
+		2C159CE820C4DDEB003DED12 /* RSHotKeywordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C159CE720C4DDEB003DED12 /* RSHotKeywordTableViewCell.swift */; };
 		2C1932711E9E46C70056262C /* GADInterstitial+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1932701E9E46C70056262C /* GADInterstitial+.swift */; };
 		2C1932731E9E472F0056262C /* GADInterstialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1932721E9E472F0056262C /* GADInterstialManager.swift */; };
 		2C1A87FD2026BF4E00051A1F /* RSPushData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1A87FC2026BF4E00051A1F /* RSPushData.swift */; };
@@ -125,6 +126,7 @@
 		2C1262762096F26F00937611 /* relatedstocks.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = relatedstocks.plist; sourceTree = "<group>"; };
 		2C128981208742DA00F9C41F /* notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification.png; sourceTree = "<group>"; };
 		2C13B8D120946DE70089B653 /* ObservableType+UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableType+UITableView.swift"; sourceTree = "<group>"; };
+		2C159CE720C4DDEB003DED12 /* RSHotKeywordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSHotKeywordTableViewCell.swift; sourceTree = "<group>"; };
 		2C1932701E9E46C70056262C /* GADInterstitial+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GADInterstitial+.swift"; sourceTree = "<group>"; };
 		2C1932721E9E472F0056262C /* GADInterstialManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADInterstialManager.swift; sourceTree = "<group>"; };
 		2C1A87FC2026BF4E00051A1F /* RSPushData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSPushData.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				2C0BA8801E0E6FF0009E2414 /* _RSInternetViewController.swift */,
 				2C02CCFD1E11FA3E00DBA3CA /* RSFavoritesViewController.swift */,
 				2CEDD9101E52E5EF00F040B0 /* RSHotKeywordTableViewController.swift */,
+				2C159CE720C4DDEB003DED12 /* RSHotKeywordTableViewCell.swift */,
 				2C63B6B61FDA721D00624D7D /* RSInternetViewController.swift */,
 			);
 			path = viewcontroller;
@@ -682,6 +685,7 @@
 				2CEDD9111E52E5EF00F040B0 /* RSHotKeywordTableViewController.swift in Sources */,
 				2C283E3920C3CEDB008CF862 /* URLError.Code+.swift in Sources */,
 				2C020AE51E04E493002B009E /* RSStockItem.swift in Sources */,
+				2C159CE820C4DDEB003DED12 /* RSHotKeywordTableViewCell.swift in Sources */,
 				2CFF5AAE1E38E1BE001D4410 /* UIButton+.swift in Sources */,
 				2C0F6AFA1E03DA0900F3A78A /* GADBannerView+.swift in Sources */,
 				2C0C82C41E10F1D200CB4A5C /* RSModelController.swift in Sources */,

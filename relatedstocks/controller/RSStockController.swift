@@ -95,16 +95,15 @@ class RSStockController: NSObject {
                 
                 var list : [RSStockKeyword] = [];
                 for i in 1...RSStockController.MaxListCount{
-                    let name = "company\(i)";
-                    guard let company = json[name] else{
+                    let keyword = RSStockKeyword.init(json, index: i);
+                    guard let name = keyword.name, name.any else{
                         continue;
                     }
                     
-                    if company.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false{
-                        list.append(RSStockKeyword.init(company));
-                        print("\(name) > \(company)");
-                    }
+                    list.append(keyword);
                 }
+                list.max{ $0.lastModified < $1.lastModified }?.isLastest = true;
+                
                 observer.onNext(list);
                 observer.onCompleted();
             }

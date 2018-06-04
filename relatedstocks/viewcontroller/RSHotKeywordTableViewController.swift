@@ -32,19 +32,12 @@ class RSHotKeywordTableViewController: UIViewController {
         
         self.tableView.dataSource = nil;
         self.tableView.delegate = nil;
-        
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: type(of: self).Cell_Id);
-        
-        RSStockController.shared.requestKeywords().bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, cellType: UITableViewCell.self) { (row, keyword, cell) in
-            cell.textLabel?.text = keyword.name;
-            print("print keyword cell. keyword[\(cell.textLabel?.text ?? "")]");
+                
+        RSStockController.shared.requestKeywords().bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, cellType: RSHotKeywordTableViewCell.self) { (row, keyword, cell) in
+            cell.keywordLabel?.text = keyword.name;
+            cell.showNewIndicator = keyword.isLastest;
+            print("print keyword cell. keyword[\(cell.textLabel?.text ?? "")] isLastest[\(keyword.isLastest)]");
             
-            let pointSize = CGFloat(17.0);
-            cell.textLabel?.font = cell.textLabel?.font.withSize(pointSize);
-            cell.textLabel?.textColor = UIColor.blue;
-            cell.textLabel?.highlightedTextColor = UIColor.gray;
-            cell.textLabel?.textAlignment = .center;
-            cell.selectionStyle = .none;
         }.disposed(by: self.keywordsDisposeBag);
         
         self.tableView.rx.modelSelected(RSStockKeyword.self)
