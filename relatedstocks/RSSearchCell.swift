@@ -36,7 +36,7 @@ class RSSearchCell: UITableViewCell {
         didSet{
             let isUp = self.price > self.startPrice;
             let offset = abs(self.price - self.startPrice);
-            let percent = Float(Float(offset) / Float(self.startPrice));
+            let percent = Float(Float(offset) / Float(self.startPrice)) * 100.0;
             self.offsetLabel?.text = "\(isUp ? "▲" : "▼")\(offset.stringByComma)"
                 + (percent > 0.009 ? "(\(isUp ? "+" : "-")\(String(format: "%.02f", percent))%)" : "");
             self.offsetLabel.textColor = isUp ? .red : .blue;
