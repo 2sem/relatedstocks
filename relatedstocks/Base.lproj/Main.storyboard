@@ -213,9 +213,21 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO2-JX-lXO" userLabel="Title Label">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO2-JX-lXO" userLabel="Title Label">
                                             <rect key="frame" x="62" y="8" width="253" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="108,000₩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4j-RW-Tqt">
+                                            <rect key="frame" x="241" y="8" width="74" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▲3,500(+3.35%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXZ-Ic-o2G">
+                                            <rect key="frame" x="198.5" y="34" width="116.5" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -239,15 +251,19 @@
                                         <constraint firstItem="gO2-JX-lXO" firstAttribute="top" secondItem="o32-DL-0by" secondAttribute="top" id="1ge-25-3oa"/>
                                         <constraint firstItem="o32-DL-0by" firstAttribute="bottom" secondItem="Egn-47-aTZ" secondAttribute="bottom" constant="-4" id="2oZ-V1-QTH"/>
                                         <constraint firstItem="Jfz-xO-QzQ" firstAttribute="top" secondItem="o32-DL-0by" secondAttribute="top" id="5Hs-CL-wVp"/>
+                                        <constraint firstItem="FXZ-Ic-o2G" firstAttribute="top" secondItem="Y4j-RW-Tqt" secondAttribute="bottom" constant="5" id="5hL-GJ-bSL"/>
                                         <constraint firstItem="Jfz-xO-QzQ" firstAttribute="leading" secondItem="o32-DL-0by" secondAttribute="leading" id="9yb-FC-wgT"/>
                                         <constraint firstItem="o32-DL-0by" firstAttribute="top" secondItem="Egn-47-aTZ" secondAttribute="top" constant="8" id="Fnz-Xi-RlY"/>
-                                        <constraint firstItem="gO2-JX-lXO" firstAttribute="trailing" secondItem="nM0-hO-xhf" secondAttribute="leading" id="O0h-ZP-Aia"/>
+                                        <constraint firstItem="gO2-JX-lXO" firstAttribute="trailing" secondItem="Y4j-RW-Tqt" secondAttribute="leading" constant="-8" id="O0h-ZP-Aia"/>
+                                        <constraint firstItem="Y4j-RW-Tqt" firstAttribute="trailing" secondItem="nM0-hO-xhf" secondAttribute="leading" id="Q9S-W4-dvh"/>
+                                        <constraint firstItem="FXZ-Ic-o2G" firstAttribute="trailing" secondItem="Y4j-RW-Tqt" secondAttribute="trailing" id="crz-5l-lmj"/>
                                         <constraint firstItem="Jfz-xO-QzQ" firstAttribute="height" secondItem="o32-DL-0by" secondAttribute="height" multiplier="0.5" id="dV6-qf-LXD"/>
                                         <constraint firstItem="nM0-hO-xhf" firstAttribute="trailing" secondItem="Egn-47-aTZ" secondAttribute="trailingMargin" id="ghj-LU-Lg3"/>
                                         <constraint firstItem="o32-DL-0by" firstAttribute="leading" secondItem="Egn-47-aTZ" secondAttribute="leading" constant="8" id="hpk-Ih-v5o"/>
                                         <constraint firstItem="nM0-hO-xhf" firstAttribute="top" secondItem="o32-DL-0by" secondAttribute="top" id="ksQ-aA-Fhi"/>
                                         <constraint firstItem="gO2-JX-lXO" firstAttribute="leading" secondItem="o32-DL-0by" secondAttribute="trailing" constant="10" id="sOJ-Nk-8hm"/>
                                         <constraint firstItem="gO2-JX-lXO" firstAttribute="bottom" secondItem="o32-DL-0by" secondAttribute="bottom" id="sxr-3L-3j9"/>
+                                        <constraint firstItem="Y4j-RW-Tqt" firstAttribute="top" secondItem="o32-DL-0by" secondAttribute="top" id="uOI-Qu-6td"/>
                                         <constraint firstItem="nM0-hO-xhf" firstAttribute="bottom" secondItem="o32-DL-0by" secondAttribute="bottom" id="wmq-C7-lKq"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -255,6 +271,9 @@
                                     <outlet property="checkButton" destination="nM0-hO-xhf" id="DO4-eT-ZWI"/>
                                     <outlet property="iconImage" destination="o32-DL-0by" id="r0g-Bq-aln"/>
                                     <outlet property="newIconImage" destination="Jfz-xO-QzQ" id="nXh-GB-91E"/>
+                                    <outlet property="offsetLabel" destination="FXZ-Ic-o2G" id="FTF-Yo-W6Q"/>
+                                    <outlet property="offsetTopConstraint" destination="5hL-GJ-bSL" id="IYW-rn-now"/>
+                                    <outlet property="priceLabel" destination="Y4j-RW-Tqt" id="iDp-Tt-G8E"/>
                                     <outlet property="titleLabel" destination="gO2-JX-lXO" id="b7P-QZ-R0Q"/>
                                     <segue destination="Ogb-9D-oog" kind="show" id="4HX-dT-Lmm"/>
                                 </connections>

@@ -12,10 +12,10 @@ class RSStockItem: NSObject {
     let name : String;
     let lastModified : Date;
     let code : String;
-    let price : Float;
-    let startPrice : Float;
+    let price : Int;
+    let startPrice : Int;
     
-    init(_ name : String, date: Date, code: String, price: Float, startPrice: Float) {
+    init(_ name : String, date: Date, code: String, price: Int, startPrice: Int) {
         self.name = name;
         self.lastModified = date;
         self.code = code;
@@ -23,16 +23,16 @@ class RSStockItem: NSObject {
         self.startPrice = startPrice;
     }
     
-    convenience init(_ json: [String: String], index: Int) {
-        let company = json["company\(index)"];
+    convenience init(_ json: [String: AnyObject], index: Int) {
+        let company = json["company\(index)"] as? String ?? "";
         print(json["datetime\(index)"] ?? "");
-        print((json["datetime\(index)"] ?? "").toDate("yyyy-M-dd HH:mm:ss"));
-        let datetime = (json["datetime\(index)"] ?? "").toDate("yyyy-M-dd HH:mm:ss") ?? Date();
-        let code = json["code\(index)"] ?? "";
-        let price = Float(json["price\(index)"] ?? "") ?? 0.0;
-        let startPrice = Float(json["startPrice\(index)"] ?? "") ?? 0.0;
+        //print((json["datetime\(index)"] ?? "").toDate("yyyy-M-dd HH:mm:ss"));
+        let datetime = (json["datetime\(index)"] as? String ?? "").toDate("yyyy-M-dd HH:mm:ss") ?? Date();
+        let code = json["code\(index)"] as? String ?? "";
+        let price = Int(json["price\(index)"] as? String ?? "") ?? 0;
+        let startPrice = Int(json["start_price\(index)"] as? String ?? "") ?? 0;
         
-        self.init(company!, date: datetime, code: code, price: price, startPrice: startPrice);
+        self.init(company, date: datetime, code: code, price: price, startPrice: startPrice);
         
         print("stock\(index) name[\(company)] datetime[\(datetime)] code[\(code)] price[\(price)] startPrice[\(startPrice)]");
     }

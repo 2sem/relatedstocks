@@ -149,7 +149,9 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
             cell.iconImage.image = UIImage(named: "stock.png");
             cell.titleLabel?.text = stock.name;
             cell.showNewIndicator = Date().timeIntervalSince(stock.lastModified) < 60 * 60 * 24 * 3;
-            
+            cell.price = stock.price;
+            cell.startPrice = stock.startPrice;
+            cell.toggleOffsetAnimation(TimeInterval(row) * 0.3);
             // sets state of favorite
             cell.checkButton.addTarget(self!, action: #selector(self!.onCheckFav(button:)), for: .touchUpInside);
             
@@ -168,9 +170,14 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
                 
                 return Observable<UITableViewCellSeparatorStyle>.just(.singleLine)
             })
-        .asDriver(onErrorJustReturn: .singleLine)
-        .drive(onNext: { [weak self](style) in
-            self?.tableView.separatorStyle = style;
+        .asDriver(onErrorJustReturn: .none)
+        .drive(onNext: { [unowned self](style) in
+            if style == .singleLine{
+                self.tableView.backgroundView = nil;
+            }else{
+                self.showKeywordView();
+            }
+            self.tableView.separatorStyle = style;
         })
         .disposed(by: self.stocksDisposeBag);
     }

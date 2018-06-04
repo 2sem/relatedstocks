@@ -52,13 +52,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RSSearchTableViewController.viewDidLoad() -&gt; ():RSSearchTableViewController.swift">
+         contextName = "closure #1 in closure #1 in RSStockController._requestStocks(withKeyword:):RSStockController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.searchBar.viewController?.classForCoder">
-            </PersistentString>
-            <PersistentString
-               value = "self.searchKeywordConroller.classForCoder">
+               value = "res.value as? [String : NSObject]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -67,6 +64,17 @@
          <PersistentStrings>
             <PersistentString
                value = "self.titleKeywordConstraints.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RSSearchTableViewController.viewDidLoad() -&gt; ():RSSearchTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.searchBar.viewController?.classForCoder">
+            </PersistentString>
+            <PersistentString
+               value = "self.searchKeywordConroller.classForCoder">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -82,10 +90,10 @@
          contextName = "AppDelegate.performPushCommand(_:body:category:item:):AppDelegate.swift">
          <PersistentStrings>
             <PersistentString
-               value = "category.rawValue">
+               value = "&quot;\(category)&quot;">
             </PersistentString>
             <PersistentString
-               value = "&quot;\(category)&quot;">
+               value = "category.rawValue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -105,6 +113,17 @@
          <PersistentStrings>
             <PersistentString
                value = "self.searchBar.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in RSSearchTableViewController.viewDidLoad():RSSearchTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "stock.startPrice">
+            </PersistentString>
+            <PersistentString
+               value = "stock.price">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

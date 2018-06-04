@@ -142,7 +142,7 @@ class RSStockController: NSObject {
                 UIApplication.offNetworking();
                 print("stock server => response[\(res.response?.statusCode.description ?? "")]");
                 print("response => %s", res.value.debugDescription);
-                guard let json = res.value as? [String : String] else{
+                guard let json = res.value as? [String : AnyObject] else{
                     observer.onError(URLError.notConnectedToInternet.error);
                     observer.onCompleted();
                     return;
