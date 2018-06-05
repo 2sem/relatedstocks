@@ -65,47 +65,72 @@ class RSStockController: NSObject {
 
     static let shared = RSStockController();
     
+    public enum QueryResult<T>{
+        case Success([T])
+        case Error(Error)
+        var isError : Bool{
+            var value = false;
+            
+            switch self{
+                case .Error(_):
+                    value = true;
+                    break;
+                default:
+                    break;
+            }
+            
+            return value;
+        }
+    }
+    
     private let keywordsSubject = BehaviorSubject<Bool>(value: false);
-    func requestKeywords() -> Observable<[RSStockKeyword]>{
+    func requestKeywords() -> Observable<QueryResult<RSStockKeyword>>{
         //.distinctUntilChanged()
         self.keywordsSubject.onNext(true);
         return self.keywordsSubject.asObservable()
-            .flatMapLatest({ (flag) -> Observable<[RSStockKeyword]> in
+            .flatMapLatest({ (flag) -> Observable<QueryResult<RSStockKeyword>> in
                 print("flag changed to query from server. keyword[\(flag)]");
                 
                 return RSStockController.shared._requestKeywords();
             })
     }
     
-    private func _requestKeywords() -> Observable<[RSStockKeyword]>{
+    private func _requestKeywords() -> Observable<QueryResult<RSStockKeyword>>{
         UIApplication.onNetworking();
         
-        return Observable<[RSStockKeyword]>.create({ (observer) -> Disposable in
+        return Observable<QueryResult<RSStockKeyword>>.create({ (observer) -> Disposable in
             let params : [String : String] = [:];
             print("search hot keywords");
             let task = Alamofire.request(RSStockController.HotKeyListURL, method: .post, parameters: params).responseJSON(options: .allowFragments) { (res) in
                 UIApplication.offNetworking();
                 print("stock server => response[\(res.response?.statusCode.description ?? "")]");
-                
-                guard let json = res.value as? [String : String] else{
-                    observer.onError(URLError.notConnectedToInternet.error);
-                    observer.onCompleted();
-                    return;
+                switch res.result{
+                    case .success(let data):
+                        guard let json = data as? [String : AnyObject] else{
+                            observer.onNext(QueryResult<RSStockKeyword>.Error(URLError.notConnectedToInternet.error));
+                            observer.onCompleted();
+                            return;
+                        }
+                        
+                        var list : [RSStockKeyword] = [];
+                        for i in 1...RSStockController.MaxListCount{
+                            let keyword = RSStockKeyword.init(json, index: i);
+                            guard let name = keyword.name, name.any else{
+                                continue;
+                            }
+                            
+                            list.append(keyword);
+                        }
+                        list.max{ $0.lastModified < $1.lastModified }?.isLastest = true;
+                        
+                        observer.onNext(QueryResult<RSStockKeyword>.Success(list));
+                        observer.onCompleted();
+                        break;
+                    case .failure(let error):
+                        observer.onNext(QueryResult<RSStockKeyword>.Error(error));
+                        observer.onCompleted();
+                        return;
                 }
-                
-                var list : [RSStockKeyword] = [];
-                for i in 1...RSStockController.MaxListCount{
-                    let keyword = RSStockKeyword.init(json, index: i);
-                    guard let name = keyword.name, name.any else{
-                        continue;
-                    }
-                    
-                    list.append(keyword);
-                }
-                list.max{ $0.lastModified < $1.lastModified }?.isLastest = true;
-                
-                observer.onNext(list);
-                observer.onCompleted();
             }
             
             return Disposables.create {
@@ -117,25 +142,26 @@ class RSStockController: NSObject {
     //, completion: (([RSStockItem]?, NSError?) -> Void)?
     private let stocksKeyword = BehaviorSubject<String>(value: "");
     
-    func requestStocks(withKeyword keyword : String) -> Observable<[RSStockItem]>{
+    func requestStocks(withKeyword keyword : String) -> Observable<QueryResult<RSStockItem>>{
         //.distinctUntilChanged()
         self.stocksKeyword.onNext(keyword);
-        return self.stocksKeyword.asObservable().distinctUntilChanged()
-        .flatMapLatest({ (text) -> Observable<[RSStockItem]> in
+        return self.stocksKeyword.asObservable()
+        .flatMapLatest({ (text) -> Observable<QueryResult<RSStockItem>> in
                 print("keyword changed to query from server. keyword[\(text)]");
 
                 guard text.any else{
                     print("empty keyword return empty array");
-                    return Observable<[RSStockItem]>.from(optional: []);
+                    return Observable<QueryResult<RSStockItem>>
+                        .from(optional: QueryResult<RSStockItem>.Success([]));
                 }
                 
                 return RSStockController.shared._requestStocks(withKeyword: text);
         })
     }
-    private func _requestStocks(withKeyword keyword : String) -> Observable<[RSStockItem]>{
+    private func _requestStocks(withKeyword keyword : String) -> Observable<QueryResult<RSStockItem>>{
         UIApplication.onNetworking();
         
-        return Observable<[RSStockItem]>.create({ (observer) -> Disposable in
+        return Observable<QueryResult<RSStockItem>>.create({ (observer) -> Disposable in
             let params = ["keyword": keyword];
             print("search with keyword[\(keyword)]");
             let task = Alamofire.request(RSStockController.StockListURL, method: .post, parameters: params).responseJSON(options: .allowFragments) { (res) in
@@ -143,7 +169,7 @@ class RSStockController: NSObject {
                 print("stock server => response[\(res.response?.statusCode.description ?? "")]");
                 print("response => %s", res.value.debugDescription);
                 guard let json = res.value as? [String : AnyObject] else{
-                    observer.onError(URLError.notConnectedToInternet.error);
+                    observer.onNext(QueryResult<RSStockItem>.Error(URLError.notConnectedToInternet.error));
                     observer.onCompleted();
                     return;
                 }
@@ -158,7 +184,7 @@ class RSStockController: NSObject {
                     
                     list.append(stock);
                 }
-                observer.onNext(list);
+                observer.onNext(QueryResult<RSStockItem>.Success(list));
                 observer.onCompleted();
             }
             

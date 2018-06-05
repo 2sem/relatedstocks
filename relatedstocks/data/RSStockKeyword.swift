@@ -18,13 +18,13 @@ class RSStockKeyword: NSObject {
         self.lastModified = date;
     }
     
-    convenience init(_ json: [String: String], index: Int) {
-        let company = json["company\(index)"];
-        print(json["datetime\(index)"] ?? "");
-        print((json["datetime\(index)"] ?? "").toDate("yyyy-M-dd HH:mm:ss"));
-        let datetime = (json["datetime\(index)"] ?? "").toDate("yyyy-M-dd HH:mm:ss") ?? Date();
+    convenience init(_ json: [String: AnyObject], index: Int) {
+        let company = json["company\(index)"] as? String ?? "";
+        //print(json["datetime\(index)"] ?? "");
+        //print((json["datetime\(index)"] as? String ?? "").toDate("yyyy-M-dd HH:mm:ss"));
+        let datetime = (json["datetime\(index)"] as? String ?? "").toDate("yyyy-M-dd HH:mm:ss") ?? Date();
         
-        self.init(company!, date: datetime);
+        self.init(company, date: datetime);
         
         print("keyword\(index) name[\(company)] datetime[\(datetime)]");
     }

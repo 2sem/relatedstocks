@@ -139,7 +139,15 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         self.definesPresentationContext = true;
         
         RSStockController.shared.requestStocks(withKeyword: "")
-        .catchErrorJustReturn([])
+            .map({ (result) -> [RSStockItem] in
+                switch result{
+                case .Success(let items):
+                    return items;
+                case .Error(let error):
+                    self.openInternetError();
+                    return [];
+                }
+            })
         .bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, cellType: RSSearchCell.self) { [weak self](row, stock, cell) in
             guard self != nil else{
                 return;
@@ -162,13 +170,17 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         }.disposed(by: self.stocksDisposeBag);
         
         RSStockController.shared.requestStocks(withKeyword: "")
+            .map({ (result) -> [RSStockItem] in
+                switch result{
+                case .Success(let items):
+                    return items;
+                case .Error(let error):
+                    self.openInternetError();
+                    return [];
+                }
+            })
             .map({ (stocks) -> UITableViewCellSeparatorStyle in
                 return stocks.any ? .singleLine : .none
-            })
-            .catchError({ (error) -> Observable<UITableViewCellSeparatorStyle> in
-                self.openSettingsOrCancel(title: "접속 오류", msg: "인터넷에 연결되지 않았거나 서버에 접속할 수 없습니다. 설정을 확인하거나 잠시 후 다시 시도해 주십시오.", style: .alert, titleForOK: "확인", titleForSettings: "설정");
-                
-                return Observable<UITableViewCellSeparatorStyle>.just(.singleLine)
             })
         .asDriver(onErrorJustReturn: .none)
         .drive(onNext: { [unowned self](style) in
@@ -178,8 +190,17 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
                 self.showKeywordView();
             }
             self.tableView.separatorStyle = style;
+            self.refreshControl?.endRefreshing();
         })
         .disposed(by: self.stocksDisposeBag);
+        
+        RSStockController.shared.requestStocks(withKeyword: "")
+            .filter { (result) -> Bool in
+                return result.isError;
+        }.asDriver(onErrorJustReturn: RSStockController.QueryResult<RSStockItem>.Success([]))
+            .drive(onNext: { [unowned self](errorResult) in
+                self.openInternetError();
+        }).disposed(by: self.stocksDisposeBag);
     }
 
     override func didReceiveMemoryWarning() {
@@ -207,10 +228,11 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
         }
         
         self.tableView.backgroundView = self.hotKeywordController.view;
+        self.updateKeywords();
     }
 
     @objc func refresh(refreshControl : UIRefreshControl){
-        refreshControl.endRefreshing();
+        self.search(withKeyword: self.searchBar?.text ?? "");
     }
     
     /**

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.283654"
+            timestampString = "549906240.7706701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "RSSearchTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.283777"
+            timestampString = "549906240.771611"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
             landmarkName = "RSSearchTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.283981"
+            timestampString = "549906240.772439"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
             landmarkName = "searchBarSearchButtonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,27 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.284096"
+            timestampString = "549906240.7731121"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "426"
-            endingLineNumber = "426"
-            landmarkName = "searchBar(_:textDidChange:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.284189"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "422"
-            endingLineNumber = "422"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
             landmarkName = "searchBar(_:selectedScopeButtonIndexDidChange:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -122,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.284282"
+            timestampString = "549906240.773762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "360"
-            endingLineNumber = "360"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
             landmarkName = "RSSearchTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -138,29 +122,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.284375"
+            timestampString = "549906240.774394"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
             landmarkName = "RSSearchTableViewController"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.284467"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -218,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.284663"
+            timestampString = "549906240.7751811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "342"
-            endingLineNumber = "342"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
             landmarkName = "onCheckFav(button:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.284758"
+            timestampString = "549906240.77583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
             landmarkName = "onCheckFav(button:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.284851"
+            timestampString = "549906240.776472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "RSSearchTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -266,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.2849441"
+            timestampString = "549906240.77739"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
             landmarkName = "onReview(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -410,29 +378,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.285174"
+            timestampString = "549906240.778306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "439"
-            endingLineNumber = "439"
+            startingLineNumber = "461"
+            endingLineNumber = "461"
             landmarkName = "searchBarSearchButtonClicked(_:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.285269"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
-            landmarkName = "RSSearchTableViewController"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -442,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.2853611"
+            timestampString = "549906240.7790411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "438"
-            endingLineNumber = "438"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
             landmarkName = "searchBarSearchButtonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -559,8 +511,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
             endingLineNumber = "151"
-            landmarkName = "performPushCommand(_:body:category:item:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -575,8 +527,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "159"
             endingLineNumber = "159"
-            landmarkName = "performPushCommand(_:body:category:item:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -591,8 +543,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "165"
             endingLineNumber = "165"
-            landmarkName = "performPushCommand(_:body:category:item:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -607,8 +559,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "145"
             endingLineNumber = "145"
-            landmarkName = "AppDelegate"
-            landmarkType = "3">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -623,8 +575,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "200"
             endingLineNumber = "200"
-            landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -698,11 +650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.285929"
+            timestampString = "549906240.780549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "search(withKeyword:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -719,8 +671,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "156"
             endingLineNumber = "156"
-            landmarkName = "performPushCommand(_:body:category:item:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -730,11 +682,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.286056"
+            timestampString = "549906240.7812589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "465"
-            endingLineNumber = "465"
+            startingLineNumber = "487"
+            endingLineNumber = "487"
             landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -746,11 +698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.286149"
+            timestampString = "549906240.7818739"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "474"
-            endingLineNumber = "474"
+            startingLineNumber = "496"
+            endingLineNumber = "496"
             landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -762,11 +714,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.286247"
+            timestampString = "549906240.78255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "477"
-            endingLineNumber = "477"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
             landmarkName = "controller(_:didChange:at:for:newIndexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -799,8 +751,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "180"
             endingLineNumber = "180"
-            landmarkName = "openKakaoUrl(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -815,8 +767,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
             endingLineNumber = "97"
-            landmarkName = "application(_:open:options:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -831,8 +783,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
             endingLineNumber = "76"
-            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -879,8 +831,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "185"
             endingLineNumber = "185"
-            landmarkName = "openKakaoUrl(_:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -906,11 +858,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/controller/RSStockController.swift"
-            timestampString = "549798872.28715"
+            timestampString = "549906240.783517"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "_requestStocks(withKeyword:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -922,27 +874,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.287239"
+            timestampString = "549906240.78364"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.287335"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "keywordTable(controller:didSelectKeyword:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -954,11 +890,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.287428"
+            timestampString = "549906240.784261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "hotKeywordTable(controller:didSelectKeyword:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -969,44 +905,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "relatedstocks/viewcontroller/RSHotKeywordTableViewController.swift"
-            timestampString = "549798872.2875251"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "relatedstocks/viewcontroller/RSHotKeywordTableViewController.swift"
-            timestampString = "549798872.28799"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.288406"
+            timestampString = "549906240.78487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "showKeywordView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1017,77 +921,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.2885031"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
-            landmarkName = "search(withKeyword:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "relatedstocks/controller/RSStockController.swift"
-            timestampString = "549798872.2885979"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "requestStocks(withKeyword:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "relatedstocks/controller/RSStockController.swift"
-            timestampString = "549798872.28868"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "requestStocks(withKeyword:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.288761"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "relatedstocks/RSSearchTableViewController.swift"
-            timestampString = "549798872.288852"
+            timestampString = "549906240.785508"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
             endingLineNumber = "153"
-            landmarkName = "viewDidLoad()"
+            landmarkName = "requestStocks(withKeyword:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/controller/RSStockController.swift"
+            timestampString = "549906240.785642"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "requestStocks(withKeyword:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1136,6 +992,278 @@
             startingLineNumber = "80"
             endingLineNumber = "80"
             landmarkName = "toggleOffsetAnimation(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/controller/RSStockController.swift"
+            timestampString = "549906240.785947"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "_requestKeywords()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/controller/RSStockController.swift"
+            timestampString = "549906240.78605"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "_requestKeywords()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/controller/RSStockController.swift"
+            timestampString = "549906240.786146"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "_requestKeywords()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/controller/RSStockController.swift"
+            timestampString = "549906240.786242"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "requestKeywords()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.786339"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
+            landmarkName = "searchBar(_:textDidChange:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.786994"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
+            landmarkName = "searchBar(_:textDidChange:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.787534"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "468"
+            endingLineNumber = "468"
+            landmarkName = "searchBarTextDidBeginEditing(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.7880549"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "updateKeywords()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.7886111"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "430"
+            endingLineNumber = "430"
+            landmarkName = "searchBarBookmarkButtonClicked(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.789142"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "search(withKeyword:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/controller/RSStockController.swift"
+            timestampString = "549906240.789722"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "requestStocks(withKeyword:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.789825"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.790367"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.790854"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.791311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.791813"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "relatedstocks/RSSearchTableViewController.swift"
+            timestampString = "549906240.792282"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

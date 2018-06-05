@@ -55,6 +55,7 @@
 		2C51FE561E24D06000D90F8F /* double_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C51FE551E24D06000D90F8F /* double_back.png */; };
 		2C51FE581E24D11000D90F8F /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C51FE571E24D11000D90F8F /* stop.png */; };
 		2C51FE5A1E24D41400D90F8F /* icons8.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C51FE591E24D41300D90F8F /* icons8.png */; };
+		2C5C059320C6B79A0064E4DB /* UIViewController+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C059220C6B79A0064E4DB /* UIViewController+Settings.swift */; };
 		2C63B6B71FDA721D00624D7D /* RSInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C63B6B61FDA721D00624D7D /* RSInternetViewController.swift */; };
 		2CB75D221E134C7E00EBE76D /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CB75D211E134C7E00EBE76D /* search.png */; };
 		2CEDD90D1E52E18D00F040B0 /* RSModelController+RSStoredStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEDD90C1E52E18D00F040B0 /* RSModelController+RSStoredStock.swift */; };
@@ -146,6 +147,7 @@
 		2C51FE551E24D06000D90F8F /* double_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = double_back.png; sourceTree = "<group>"; };
 		2C51FE571E24D11000D90F8F /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		2C51FE591E24D41300D90F8F /* icons8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icons8.png; sourceTree = "<group>"; };
+		2C5C059220C6B79A0064E4DB /* UIViewController+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Settings.swift"; sourceTree = "<group>"; };
 		2C63B6B61FDA721D00624D7D /* RSInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSInternetViewController.swift; sourceTree = "<group>"; };
 		2CB75D211E134C7E00EBE76D /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		2CE12C251FD18C86006A965A /* relatedstocks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = relatedstocks.entitlements; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				2CEDD9101E52E5EF00F040B0 /* RSHotKeywordTableViewController.swift */,
 				2C159CE720C4DDEB003DED12 /* RSHotKeywordTableViewCell.swift */,
 				2C63B6B61FDA721D00624D7D /* RSInternetViewController.swift */,
+				2C5C059220C6B79A0064E4DB /* UIViewController+Settings.swift */,
 			);
 			path = viewcontroller;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				2C0C82C01E10EE9800CB4A5C /* RSModel.xcdatamodeld in Sources */,
 				2C0F6AC21E03885B00F3A78A /* AppDelegate.swift in Sources */,
 				2C0F6AF41E03A82100F3A78A /* MainViewController.swift in Sources */,
+				2C5C059320C6B79A0064E4DB /* UIViewController+Settings.swift in Sources */,
 				2C0F85541F5010D600CEA691 /* GADRewardManager.swift in Sources */,
 				2CFE25F51E7B9BFA00CC9369 /* RSDefaults.swift in Sources */,
 				2CEDD90D1E52E18D00F040B0 /* RSModelController+RSStoredStock.swift in Sources */,

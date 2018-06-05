@@ -41,6 +41,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #1 in RSStockController._requestStocks(withKeyword:):RSStockController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "res.value as? [String : NSObject]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AppDelegate.application(_:didFinishLaunchingWithOptions:):AppDelegate.swift">
          <PersistentStrings>
             <PersistentString
@@ -48,14 +56,6 @@
             </PersistentString>
             <PersistentString
                value = "push[&quot;item&quot;] as? String ?? &quot;&quot;">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in RSStockController._requestStocks(withKeyword:):RSStockController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "res.value as? [String : NSObject]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -87,6 +87,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "RSSearchTableViewController.search(withKeyword:):RSSearchTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tableView.delegate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AppDelegate.performPushCommand(_:body:category:item:):AppDelegate.swift">
          <PersistentStrings>
             <PersistentString
@@ -113,6 +121,14 @@
          <PersistentStrings>
             <PersistentString
                value = "self.searchBar.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in RSStockController._requestKeywords():RSStockController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "res.value">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

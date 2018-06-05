@@ -32,13 +32,23 @@ class RSHotKeywordTableViewController: UIViewController {
         
         self.tableView.dataSource = nil;
         self.tableView.delegate = nil;
+        
+        RSStockController.shared.requestKeywords()
+            .map({ (result) -> [RSStockKeyword] in
+                switch result{
+                case .Success(let keywords):
+                    return keywords;
+                case .Error(let error):
+                    self.openInternetError();
+                    return [];
+                }
+            })
+            .bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, cellType: RSHotKeywordTableViewCell.self) { (row, keyword, cell) in
+                cell.keywordLabel?.text = keyword.name;
+                cell.showNewIndicator = keyword.isLastest;
+                print("print keyword cell. keyword[\(cell.textLabel?.text ?? "")] isLastest[\(keyword.isLastest)]");
                 
-        RSStockController.shared.requestKeywords().bindTableView(to: self.tableView, cellIdentifier: type(of: self).Cell_Id, cellType: RSHotKeywordTableViewCell.self) { (row, keyword, cell) in
-            cell.keywordLabel?.text = keyword.name;
-            cell.showNewIndicator = keyword.isLastest;
-            print("print keyword cell. keyword[\(cell.textLabel?.text ?? "")] isLastest[\(keyword.isLastest)]");
-            
-        }.disposed(by: self.keywordsDisposeBag);
+            }.disposed(by: self.keywordsDisposeBag);
         
         self.tableView.rx.modelSelected(RSStockKeyword.self)
             .subscribe(onNext: { [weak self](keyword) in
@@ -52,8 +62,9 @@ class RSHotKeywordTableViewController: UIViewController {
     }
     
     func updateKeywords(){
-        //        refreshControl.isRefreshing = true;
         RSStockController.shared.requestKeywords();
+        
+        //        refreshControl.isRefreshing = true;
     }
     
     override func didReceiveMemoryWarning() {
