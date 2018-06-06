@@ -143,7 +143,7 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
                 switch result{
                 case .Success(let items):
                     return items;
-                case .Error(let error):
+                case .Error(_):
                     self.openInternetError();
                     return [];
                 }
@@ -174,7 +174,7 @@ class RSSearchTableViewController: UITableViewController, UISearchBarDelegate, U
                 switch result{
                 case .Success(let items):
                     return items;
-                case .Error(let error):
+                case .Error(_):
                     self.openInternetError();
                     return [];
                 }
