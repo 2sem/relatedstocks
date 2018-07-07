@@ -28,7 +28,9 @@ class RSHotKeywordTableViewCell: UITableViewCell {
                     self?.newIconImage?.alpha = 1.0;
                 }
             }else{
-                self.newAnimator?.stopAnimation(true);
+                if self.newAnimator.isRunning{
+                    self.newAnimator?.stopAnimation(false);
+                }
                 self.newIconImage.isHidden = true;
             }
         }
